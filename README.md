@@ -2,8 +2,8 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://marklaak.users.cs.helsinki.fi/Ystavapalvelu)
-* [Linkki dokumentaatiooni](https://www.github.com/koodikettu/ystavapalvelu)
+* [Linkki sovellukseeni](https://marklaak.users.cs.helsinki.fi/ystavapalvelu)
+* [Linkki dokumentaatiooni](https://www.github.com/koodikettu/Ystavapalvelu)
 
 ## Työn aihe
 
