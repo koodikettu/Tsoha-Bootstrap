@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Käyttäjäprofiili: Pelimies</h2>
+
+<h3>Muokkaa profiilia</h3>
+
+<form>
+    <div class="form-group">
+        <label>Nimimerkki</label>
+        <input class="form-control" value="Pelimies" type="text">
+        
+    </div>
+    <div class="radio">
+            <label><input type="radio" name="sukupuoli" checked>mies</label>
+    </div>
+    <div class="radio">
+            <label><input type="radio" name="sukupuoli">nainen</label>
+    </div>
+        
+    
+    
+    <div class="form-group">
+        <label>Syntymäaika</label>
+        <input class="form-control" value="05.12.1997" type="text">
+        
+        
+    </div>
+        <div class="form-group">
+        <label>Paikkakunta</label>
+        <input class="form-control" value="Helsinki" type="text">
+        
+    </div>
+    <div class="form-group">
+        <label for="kuvaus">Kuvaus:</label>
+        <textarea class="form-control" rows="5" id="kuvaus">Olen iloinen ja reipas tietojenkäsittelytieteen maisteriopiskelija. Pidän kovasti tietokonepeleistä ja energiajuomista.
+        </textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+
+
+
+{% endblock %}
