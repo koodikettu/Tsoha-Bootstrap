@@ -11,7 +11,7 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 
 ## Toteutetut sivut
 
-* Esittelysivu (http://marklaak.users.cs.helsinki.fi/etusivu)
-* Julkinen profiili (http://marklaak.users.cs.helsinki.fi/esittely_julkinen)
-* Profiilin muokkaus (http://marklaak.users.cs.helsinki.fi/profiilin_muokkaus)
-* Esittelysivu (http://marklaak.users.cs.helsinki.fi/etusivu)
+* Esittelysivu (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/etusivu)
+* Julkinen profiili (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/esittely_julkinen)
+* Profiilin muokkaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/profiilin_muokkaus)
+* Esittelysivu (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/etusivu)
