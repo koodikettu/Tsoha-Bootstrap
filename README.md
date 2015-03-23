@@ -18,4 +18,6 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 * Kirjautuminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/kirjautuminen)
 * Rekisteröityminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen)
 * Viestien listaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestien_listaus)
+* Viestin lähettäminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestin_lahettaminen)
+* Viestiin vastaaminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestiin_vastaaminen)
 * Ylläpitäjän käyttäjälistaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus)

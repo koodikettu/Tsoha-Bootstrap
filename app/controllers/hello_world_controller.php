@@ -46,5 +46,13 @@
         View::make('suunnitelmat/yllapitajan_kayttajalistaus.html');
     }
     
+    public static function viestin_lahettaminen(){
+        View::make('suunnitelmat/viestin_lahettaminen.html');
+    }
+    
+    public static function viestiin_vastaaminen(){
+        View::make('suunnitelmat/viestiin_vastaaminen.html');
+    }
+    
     
   }

@@ -38,3 +38,9 @@
     $routes->get('/yllapitajan_kayttajalistaus', function() {
     HelloWorldController::yllapitajan_kayttajalistaus();
   });
+    $routes->get('/viestin_lahettaminen', function() {
+    HelloWorldController::viestin_lahettaminen();
+  });
+    $routes->get('/viestiin_vastaaminen', function() {
+    HelloWorldController::viestiin_vastaaminen();
+  });
