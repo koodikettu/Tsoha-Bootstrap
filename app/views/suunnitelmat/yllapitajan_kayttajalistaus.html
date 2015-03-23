@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Ylläpitäjä: admin</h2>
+
+<h3>Ystäväpalvelun käyttäjät:</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <th>Kayttajatunnus</th>
+    <th>Etunimi</th>
+    <th>Sukunimi</th>
+    <th>Katuosoite</th>
+    <th>Postinumero</th>
+    <th>Paikkakunta</th>
+    <th>Laskutus</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>av_dude</td>
+            <td>Antti</td>
+            <td>Virtanen</td>
+            <td>Hämeentie 78 B 12</td>
+            <td>00260</td>
+            <td>Helsinki</td>
+            <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
+        </tr>
+        <tr>
+            <td>bb-mint</td>
+            <td>Minttu</td>
+            <td>Korhonen</td>
+            <td>Helsinginkatu 21 C 5</td>
+            <td>00240</td>
+            <td>Helsinki</td>
+            <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+{% endblock %}

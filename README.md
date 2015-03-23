@@ -15,3 +15,7 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 * Julkinen profiili (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/esittely_julkinen)
 * Profiilin muokkaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/profiilin_muokkaus)
 * Tulosten listaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/tulosten_listaus)
+* Kirjautuminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/kirjautuminen)
+* Rekisteröityminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen)
+* Viestien listaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestien_listaus)
+* Ylläpitäjän käyttäjälistaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus)

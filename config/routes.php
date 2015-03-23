@@ -23,3 +23,18 @@
     $routes->get('/tulosten_listaus', function() {
     HelloWorldController::tulosten_listaus();
   });
+    $routes->get('/kirjautuminen', function() {
+    HelloWorldController::kirjautuminen();
+  });
+  
+    $routes->get('/rekisteroityminen', function() {
+    HelloWorldController::rekisteroityminen();
+  });
+  
+    $routes->get('/viestien_listaus', function() {
+    HelloWorldController::viestien_listaus();
+  });
+  
+    $routes->get('/yllapitajan_kayttajalistaus', function() {
+    HelloWorldController::yllapitajan_kayttajalistaus();
+  });

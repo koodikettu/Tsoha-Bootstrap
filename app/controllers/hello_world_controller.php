@@ -30,5 +30,21 @@
         View::make('suunnitelmat/tulosten_listaus.html');
     }
     
+    public static function kirjautuminen(){
+        View::make('suunnitelmat/kirjautuminen.html');
+    }
+    
+    public static function rekisteroityminen(){
+        View::make('suunnitelmat/rekisteroityminen.html');
+    }
+    
+    public static function viestien_listaus(){
+        View::make('suunnitelmat/viestien_listaus.html');
+    }
+    
+    public static function yllapitajan_kayttajalistaus(){
+        View::make('suunnitelmat/yllapitajan_kayttajalistaus.html');
+    }
+    
     
   }
