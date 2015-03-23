@@ -26,5 +26,9 @@
         View::make('suunnitelmat/profiilin_muokkaus.html');
     }
     
+    public static function tulosten_listaus(){
+        View::make('suunnitelmat/tulosten_listaus.html');
+    }
+    
     
   }

@@ -19,3 +19,7 @@
   $routes->get('/profiilin_muokkaus', function() {
     HelloWorldController::profiilin_muokkaus();
   });
+  
+    $routes->get('/tulosten_listaus', function() {
+    HelloWorldController::tulosten_listaus();
+  });
