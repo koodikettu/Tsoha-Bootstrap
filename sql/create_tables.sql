@@ -5,7 +5,7 @@ CREATE TABLE Asiakas(
 	nimimerkki varchar(20) NOT NULL,
 	kayttajatunnus varchar(20) UNIQUE NOT NULL,
 	salasana varchar(20) NOT NULL,
-	syntymaaika varchar(10) NOT NULL,
+	syntymaaika DATE NOT NULL,
 	sukupuoli varchar(8) NOT NULL,
 	katuosoite varchar(30) NOT NULL,
 	postinumero varchar(6) NOT NULL,
