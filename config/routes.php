@@ -48,3 +48,7 @@
     $routes->get('/viestiin_vastaaminen', function() {
     HelloWorldController::viestiin_vastaaminen();
   });
+  
+      $routes->get('/kayttaja/:kayttajatunnus', function($kayttajatunnus) {
+    AsiakasController::naytaKayttaja($kayttajatunnus);
+  });

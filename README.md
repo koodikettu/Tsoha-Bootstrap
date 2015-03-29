@@ -25,3 +25,4 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 ## 3. viikon palautuksen toiminnallisuutta sisältävät sivut:
 * Rekisteröityminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen)
 * Ylläpitäjän käyttäjälistaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus)
+* Ylläpitäjän näkemä käyttäjäsivu (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/kayttaja/av_dude)

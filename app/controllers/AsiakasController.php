@@ -41,4 +41,10 @@ class AsiakasController extends BaseController{
         
         Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '!'));
     }
+    
+    public static function naytaKayttaja($kayttajatunnus){
+        $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
+//        Kint::dump($kayttaja);
+        View::make('suunnitelmat/kayttajatiedot.html', array('kayttaja' => $kayttaja));
+    }
 }

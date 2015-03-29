@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Käyttäjä: {{kayttaja.kayttajatunnus}}</h2>
+
+<ul>
+    <li><strong>Sukupuoli: </strong>{{kayttaja.sukupuoli}}</li>
+    <li><strong>Syntymäaika: </strong>{{kayttaja.syntymaaika}}</li>
+    <li><strong>Paikkakunta: </strong>{{kayttaja.paikkakunta}}</li>
+</ul>
+<h3>Kuvaus</h3>
+<p>
+    {{kayttaja.esittelyteksti}}
+</p>
+
+{% endblock %}
+
