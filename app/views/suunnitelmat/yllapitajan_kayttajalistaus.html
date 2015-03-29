@@ -10,32 +10,23 @@
 <table class="table table-striped table-bordered">
     <thead>
     <th>Kayttajatunnus</th>
-    <th>Etunimi</th>
-    <th>Sukunimi</th>
+    <th>Nimi</th>
     <th>Katuosoite</th>
     <th>Postinumero</th>
     <th>Paikkakunta</th>
     <th>Laskutus</th>
     </thead>
     <tbody>
+        {% for asiakas in asiakkaat %}
         <tr>
-            <td>av_dude</td>
-            <td>Antti</td>
-            <td>Virtanen</td>
-            <td>Hämeentie 78 B 12</td>
-            <td>00260</td>
-            <td>Helsinki</td>
+            <td>{{asiakas.kayttajatunnus}}</td>
+            <td>{{asiakas.etunimi}} {{asiakas.sukunimi}}</td>
+            <td>{{asiakas.katuosoite}}</td>
+            <td>{{asiakas.postinumero}}</td>
+            <td>{{asiakas.paikkakunta}}</td>
             <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
         </tr>
-        <tr>
-            <td>bb-mint</td>
-            <td>Minttu</td>
-            <td>Korhonen</td>
-            <td>Helsinginkatu 21 C 5</td>
-            <td>00240</td>
-            <td>Helsinki</td>
-            <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 

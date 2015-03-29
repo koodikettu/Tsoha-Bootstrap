@@ -11,7 +11,12 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('helloworld.html');
+//      View::make('helloworld.html');
+        $eka_kayttaja = Asiakas::find(1);
+        $asiakkaat = Asiakas::all();
+        
+        Kint::dump($eka_kayttaja);
+        Kint::dump($asiakkaat);
     }
     
     public static function etusivu(){
@@ -43,7 +48,8 @@
     }
     
     public static function yllapitajan_kayttajalistaus(){
-        View::make('suunnitelmat/yllapitajan_kayttajalistaus.html');
+        $asiakkaat = Asiakas::all();
+        View::make('suunnitelmat/yllapitajan_kayttajalistaus.html', array('asiakkaat' => $asiakkaat));
     }
     
     public static function viestin_lahettaminen(){

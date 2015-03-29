@@ -31,6 +31,10 @@
     HelloWorldController::rekisteroityminen();
   });
   
+    $routes->post('/rekisteroityminen', function() {
+    AsiakasController::store();
+  });
+  
     $routes->get('/viestien_listaus', function() {
     HelloWorldController::viestien_listaus();
   });

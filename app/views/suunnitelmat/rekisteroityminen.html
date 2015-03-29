@@ -8,58 +8,64 @@
 <p>Rekisteröidy ystäväpalvelun käyttäjäksi antamalla seuraavat tiedot. Näitä
     tietoja ei näytetä muille palvelun käyttäjille.</p>
 
-<form>
+<form method="post" action="{{base_path}}/rekisteroityminen">
     <div class="form-group">
         <label>Käyttäjätunnus, jota haluat käyttää palveluun kirjautumisessa</label>
-        <input class="form-control" value="" type="text">
+        <input name="kayttajatunnus" class="form-control" value="" type="text">
         
     </div>
     
         <div class="form-group">
         <label>Salasana, jota haluat käyttää palveluun kirjautumisessa.</label>
-        <input class="form-control" value="" type="text">
+        <input name="salasana" class="form-control" value="" type="text">
+        
+        
+    </div>
+            <div class="form-group">
+        <label>Nimimerkki, jota haluat käyttää palvelussa.</label>
+        <input name="nimimerkki" class="form-control" value="" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Etunimi</label>
-        <input class="form-control" value="" type="text">
+        <input name="etunimi" class="form-control" value="" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Sukunimi</label>
-        <input class="form-control" value="" type="text">
+        <input name="sukunimi" class="form-control" value="" type="text">
         
         
     </div>
         <div class="form-group">
-        <label>Syntymäaika muodossa pp.kk.vvvv</label>
-        <input class="form-control" value="" type="text">
+        <label>Syntymäaika</label>
+        <input name="syntymaaika" class="form-control" type="text">
         
     </div>
     <div class="radio">
-            <label><input type="radio" name="sukupuoli" checked>mies</label>
+            <label><input type="radio" name="sukupuoli" value="M" checked>mies</label>
     </div>
     <div class="radio">
-            <label><input type="radio" name="sukupuoli">nainen</label>
+            <label><input type="radio" name="sukupuoli" value="N">nainen</label>
     </div>
         
     <div class="form-group">
         <label>Katuosoite</label>
-        <input class="form-control" value="" type="text">
+        <input name="katuosoite" class="form-control" value="" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Postinumero</label>
-        <input class="form-control" value="" type="text">
+        <input name="postinumero" class="form-control" value="" type="text">
         
         
     </div>
         <div class="form-group">
         <label>Paikkakunta</label>
-        <input class="form-control" value="" type="text">
+        <input name="paikkakunta" class="form-control" value="" type="text">
         
     </div>
     
