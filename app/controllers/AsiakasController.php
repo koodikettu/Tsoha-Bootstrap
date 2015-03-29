@@ -35,10 +35,10 @@ class AsiakasController extends BaseController{
             
         ));
         
-        Kint::dump($params);
+//        Kint::dump($params);
         
         $asiakas->save();
         
-//        Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '!'));
+        Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '!'));
     }
 }

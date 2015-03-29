@@ -84,10 +84,10 @@ class Asiakas extends BaseModel {
         $query->execute(array('kayttajatunnus' => $this->kayttajatunnus, 'salasana' => $this->salasana, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'nimimerkki' => $this->nimimerkki, 'syntymaaika' => $this->syntymaaika, 'sukupuoli' => $this->sukupuoli, 'katuosoite' => $this->katuosoite, 'postinumero' => $this->postinumero, 'paikkakunta' => $this->paikkakunta));
         $row = $query->fetch();
         
-        Kint::trace();
-        Kint::dump($row);
+//        Kint::trace();
+//        Kint::dump($row);
         
-//        $this->asiakasid=$row['asiakasid'];
+        $this->asiakasid=$row['asiakasid'];
     }
 
 }

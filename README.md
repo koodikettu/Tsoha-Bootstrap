@@ -21,3 +21,7 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 * Viestin lähettäminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestin_lahettaminen)
 * Viestiin vastaaminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/viestiin_vastaaminen)
 * Ylläpitäjän käyttäjälistaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus)
+
+## 3. viikon palautuksen toiminnallisuutta sisältävät sivut:
+* Rekisteröityminen (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen)
+* Ylläpitäjän käyttäjälistaus (http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus)
