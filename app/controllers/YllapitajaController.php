@@ -29,7 +29,7 @@ class YllapitajaController extends BaseController {
             View::make('/suunnitelmat/yllapitajan_kirjautuminen.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajatunnus' => $params['kayttajatunnus']));
         } else {
             $_SESSION['yllapitajaid'] = $yllapitaja->yllapitajaid;
-            Redirect::to('/suunnitelmat/yllapitajan_kayttajalistaus', array('message' => 'Tervetuloa takaisin ' . $yllapitaja->kayttajatunnus . '!'));
+            Redirect::to('/yllapitajan_kayttajalistaus', array('message' => 'Tervetuloa takaisin ' . $yllapitaja->kayttajatunnus . '!'));
         }
     }
 

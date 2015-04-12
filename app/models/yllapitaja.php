@@ -27,11 +27,11 @@ class Yllapitaja extends BaseModel {
         $row = $query->fetch();
         if ($row) {
             $attribuutit = array(
-                'yllapitajaid' => $row['yllapitajaID'],
+                'yllapitajaid' => $row['yllapitajaid'],
                 'kayttajatunnus' => $row['kayttajatunnus'],
                 'salasana' => $row['salasana']
             );
-            $yllapitaja = new Yllapitaja($attributes);
+            $yllapitaja = new Yllapitaja($attribuutit);
             return $yllapitaja;
         }
 
