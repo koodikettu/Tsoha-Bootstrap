@@ -50,18 +50,21 @@ class AsiakasController extends BaseController {
     }
 
     public static function naytaKayttaja($kayttajatunnus) {
+                self::check_yllapitaja_logged_in();
         $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
 //        Kint::dump($kayttaja);
         View::make('suunnitelmat/kayttajatiedot.html', array('kayttaja' => $kayttaja));
     }
 
     public static function yllapitajan_muokkausnakyma($kayttajatunnus) {
+        self::check_yllapitaja_logged_in();
         $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
 //        Kint::dump($kayttaja);
         View::make('suunnitelmat/yllapitajan_muokkausnakyma.html', array('asiakas' => $kayttaja));
     }
 
     public static function yllapitajan_muokkaus_ja_poisto() {
+                self::check_yllapitaja_logged_in();
         $params = $_POST;
 //            Kint::trace();
 //            Kint::dump($params);

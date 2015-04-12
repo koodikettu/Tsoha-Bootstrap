@@ -37,6 +37,21 @@ class Yllapitaja extends BaseModel {
 
         return null;
     }
+    
+        public static function getYllapitaja($yid) {
+        $query = DB::connection()->prepare('SELECT * FROM Yllapitaja WHERE yllapitajaid= :yllapitajaid LIMIT 1');
+        $query->execute(array('yllapitajaid' => $yid));
+        $row = $query->fetch();
+
+        if ($row) {
+            $yllapitaja = new Yllapitaja(array(
+                'yllapitajaid' => $row['yllapitajaid'],
+                'kayttajatunnus' => $row['kayttajatunnus'],
+                'salasana' => $row['salasana']
+            ));
+            return $yllapitaja;
+        }
+    }
 
     
 
