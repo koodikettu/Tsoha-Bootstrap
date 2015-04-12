@@ -16,20 +16,22 @@
     <th>Paikkakunta</th>
     <th>Tarkemmat tiedot</th>
     <th>Laskutus</th>
-    </thead>
-    <tbody>
-        {% for asiakas in asiakkaat %}
-        <tr>
-            <td>{{asiakas.kayttajatunnus}}</td>
-            <td>{{asiakas.etunimi}} {{asiakas.sukunimi}}</td>
-            <td>{{asiakas.katuosoite}}</td>
-            <td>{{asiakas.postinumero}}</td>
-            <td>{{asiakas.paikkakunta}}</td>
-            <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
-            <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <th>Muokkaus / Poisto</th>
+</thead>
+<tbody>
+    {% for asiakas in asiakkaat %}
+    <tr>
+        <td>{{asiakas.kayttajatunnus}}</td>
+        <td>{{asiakas.etunimi}} {{asiakas.sukunimi}}</td>
+        <td>{{asiakas.katuosoite}}</td>
+        <td>{{asiakas.postinumero}}</td>
+        <td>{{asiakas.paikkakunta}}</td>
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
+        <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/yllapitajan_muokkausnakyma/{{asiakas.kayttajatunnus}}">Muokkaa/Poista</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
 </table>
 
 

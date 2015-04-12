@@ -8,40 +8,50 @@
 <p>Rekisteröidy ystäväpalvelun käyttäjäksi antamalla seuraavat tiedot. Näitä
     tietoja ei näytetä muille palvelun käyttäjille.</p>
 
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/rekisteroityminen">
     <div class="form-group">
         <label>Käyttäjätunnus, jota haluat käyttää palveluun kirjautumisessa</label>
-        <input name="kayttajatunnus" class="form-control" value="" type="text">
+        <input name="kayttajatunnus" class="form-control" value="{{attributes.kayttajatunnus}}" type="text">
         
     </div>
     
         <div class="form-group">
         <label>Salasana, jota haluat käyttää palveluun kirjautumisessa.</label>
-        <input name="salasana" class="form-control" value="" type="text">
+        <input name="salasana" class="form-control" value="{{attributes.salasana}}" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Nimimerkki, jota haluat käyttää palvelussa.</label>
-        <input name="nimimerkki" class="form-control" value="" type="text">
+        <input name="nimimerkki" class="form-control" value="{{attributes.nimimerkki}}" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Etunimi</label>
-        <input name="etunimi" class="form-control" value="" type="text">
+        <input name="etunimi" class="form-control" value="{{attributes.etunimi}}" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Sukunimi</label>
-        <input name="sukunimi" class="form-control" value="" type="text">
+        <input name="sukunimi" class="form-control" value="{{attributes.sukunimi}}" type="text">
         
         
     </div>
         <div class="form-group">
         <label>Syntymäaika YYYY-MM-DD</label>
-        <input name="syntymaaika" class="form-control" type="text">
+        <input name="syntymaaika" class="form-control" type="text" value="{{attributes.syntymaaika}}">
         
     </div>
     <div class="radio">
@@ -53,19 +63,19 @@
         
     <div class="form-group">
         <label>Katuosoite</label>
-        <input name="katuosoite" class="form-control" value="" type="text">
+        <input name="katuosoite" class="form-control" value="{{attributes.katuosoite}}" type="text">
         
         
     </div>
             <div class="form-group">
         <label>Postinumero</label>
-        <input name="postinumero" class="form-control" value="" type="text">
+        <input name="postinumero" class="form-control" value="{{attributes.postinumero}}" type="text">
         
         
     </div>
         <div class="form-group">
         <label>Paikkakunta</label>
-        <input name="paikkakunta" class="form-control" value="" type="text">
+        <input name="paikkakunta" class="form-control" value="{{attributes.paikkakunta}}" type="text">
         
     </div>
     

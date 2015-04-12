@@ -22,6 +22,7 @@ class Asiakas extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoi_etunimi','validoi_sukunimi','validoi_nimimerkki','validoi_kayttajatunnus','validoi_salasana','validoi_syntymaaika','validoi_sukupuoli','validoi_katuosoite','validoi_postinumero','validoi_paikkakunta');
     }
 
     public static function all() {
@@ -55,9 +56,9 @@ class Asiakas extends BaseModel {
     public static function find($asiakasid) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE asiakasid= :asiakasid LIMIT 1');
         $query->execute(array('asiakasid' => $asiakasid));
-        $row=$query->fetch();
-        
-        if($row) {
+        $row = $query->fetch();
+
+        if ($row) {
             $asiakas = new Asiakas(array(
                 'asiakasid' => $row['asiakasid'],
                 'etunimi' => $row['etunimi'],
@@ -78,17 +79,16 @@ class Asiakas extends BaseModel {
             return $asiakas;
         }
     }
-    
-    
-        public static function haeKayttaja($kayttajatunnus) {
+
+    public static function haeKayttaja($kayttajatunnus) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE kayttajatunnus= :kayttajatunnus LIMIT 1');
         $query->execute(array(':kayttajatunnus' => $kayttajatunnus));
-        $row=$query->fetch();
-        
+        $row = $query->fetch();
+
 //                Kint::trace();
 //        Kint::dump($row);
-        
-        if($row) {
+
+        if ($row) {
             $asiakas = new Asiakas(array(
                 'asiakasid' => $row['asiakasid'],
                 'etunimi' => $row['etunimi'],
@@ -109,16 +109,124 @@ class Asiakas extends BaseModel {
             return $asiakas;
         }
     }
-    
-    public function save(){
+
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO asiakas (kayttajatunnus, salasana, etunimi, sukunimi, nimimerkki, syntymaaika, sukupuoli, katuosoite, postinumero, paikkakunta) VALUES (:kayttajatunnus, :salasana, :etunimi, :sukunimi, :nimimerkki, :syntymaaika, :sukupuoli, :katuosoite, :postinumero, :paikkakunta) RETURNING asiakasid');
         $query->execute(array('kayttajatunnus' => $this->kayttajatunnus, 'salasana' => $this->salasana, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'nimimerkki' => $this->nimimerkki, 'syntymaaika' => $this->syntymaaika, 'sukupuoli' => $this->sukupuoli, 'katuosoite' => $this->katuosoite, 'postinumero' => $this->postinumero, 'paikkakunta' => $this->paikkakunta));
         $row = $query->fetch();
-        
+
 //        Kint::trace();
 //        Kint::dump($row);
-        
-        $this->asiakasid=$row['asiakasid'];
+
+        $this->asiakasid = $row['asiakasid'];
     }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM asiakas WHERE kayttajatunnus=:kayttajatunnus');
+        $query->execute(array('kayttajatunnus' => $this->kayttajatunnus));
+
+//        Kint::trace();
+//        Kint::dump($row);
+
+
+    }
+    
+        public function update_asiakastiedot($params) {
+        $query = DB::connection()->prepare('UPDATE asiakas SET kayttajatunnus=:kayttajatunnus, salasana=:salasana, etunimi=:etunimi, sukunimi=:sukunimi, nimimerkki=:nimimerkki, syntymaaika=:syntymaaika, sukupuoli=:sukupuoli, katuosoite=:katuosoite, postinumero=:postinumero, paikkakunta=:paikkakunta WHERE asiakasID=:asiakasid');
+        $query->execute(array('kayttajatunnus' => $params['kayttajatunnus'], 'salasana' => $params['salasana'], 'etunimi' => $params['etunimi'], 'sukunimi' => $params['sukunimi'], 'nimimerkki' => $params['nimimerkki'], 'syntymaaika' => $params['syntymaaika'], 'sukupuoli' => $params['sukupuoli'], 'katuosoite' => $params['katuosoite'], 'postinumero' => $params['postinumero'], 'paikkakunta' => $params['paikkakunta'], 'asiakasid' => $this->asiakasid));
+
+//        Kint::trace();
+//        Kint::dump($row);
+
+
+    }
+    
+    public function validoi_etunimi() {
+        $errors= array();
+        if(!$this->val_strlen($this->etunimi, 2))
+            $errors[]= 'Etunimessä on oltava vähintään 2 merkkiä';
+        if(!$this->notNull($this->etunimi))
+            $errors[]= 'Etunimi ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_sukunimi() {
+        $errors= array();
+        if(!$this->val_strlen($this->sukunimi, 2))
+            $errors[]= 'Sukunimessä on oltava vähintään 2 merkkiä';
+        if(!$this->notNull($this->sukunimi))
+            $errors[]= 'Sukunimi ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_kayttajatunnus() {
+        $errors= array();
+        if(!$this->val_strlen($this->kayttajatunnus, 3))
+            $errors[]= 'Käyttäjätunnuksessa on oltava vähintään 3 merkkiä';
+        if(!$this->notNull($this->kayttajatunnus))
+            $errors[]= 'Käyttäjätunnus ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_nimimerkki() {
+        $errors= array();
+        if(!$this->val_strlen($this->nimimerkki, 3))
+            $errors[]= 'Nimimerkissä on oltava vähintään 3 merkkiä';
+        if(!$this->notNull($this->nimimerkki))
+            $errors[]= 'Nimimerkki ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_salasana() {
+        $errors= array();
+        if(!$this->val_strlen($this->salasana, 6))
+            $errors[]= 'Salasanassa on oltava vähintään 6 merkkiä';
+        if(!$this->notNull($this->salasana))
+            $errors[]= 'Salasana ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_syntymaaika() {
+        $errors= array();
+        if(strlen($this->syntymaaika)!=10)
+            $errors[]= 'Syntymäajan on oltava muotoa YYYY-MM-DD';
+        return $errors;
+    }
+    
+        public function validoi_sukupuoli() {
+        $errors= array();
+        if($this->sukupuoli!='M' && $this->sukupuoli!='F')
+            $errors[]= 'Sukupuolen on oltava M tai F';
+        return $errors;
+    }
+    
+        public function validoi_katuosoite() {
+        $errors= array();
+        if(!$this->val_strlen($this->katuosoite, 3))
+            $errors[]= 'Katunimessä on oltava vähintään 3 merkkiä';
+        if(!$this->notNull($this->katuosoite))
+            $errors[]= 'Katunimi ei saa olla tyhjä';
+        return $errors;
+    }
+    
+        public function validoi_postinumero() {
+        $errors= array();
+        if(strlen($this->postinumero)!=5)
+            $errors[]= 'Postinumerossa on oltava 5 numeroa';
+        if(!is_numeric($this->postinumero))
+            $errors[]= 'Postinumeron on oltava numero';
+        return $errors;
+    }
+    
+        public function validoi_paikkakunta() {
+        $errors= array();
+        if(!$this->val_strlen($this->paikkakunta, 2))
+            $errors[]= 'Paikkakunnassa on oltava vähintään 2 merkkiä';
+        if(!$this->notNull($this->paikkakunta))
+            $errors[]= 'Paikkakunta ei saa olla tyhjä';
+        return $errors;
+    }
+    
+    
 
 }

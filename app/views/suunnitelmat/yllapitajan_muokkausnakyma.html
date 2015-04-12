@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Muokkaa käyttäjän {{asiakas.kayttajatunnus}} ({{asiakas.asiakasid}}) tietoja</h2>
+
+<p>Rekisteröidy ystäväpalvelun käyttäjäksi antamalla seuraavat tiedot. Näitä
+    tietoja ei näytetä muille palvelun käyttäjille.</p>
+
+<form method="post" action="{{base_path}}/yllapitajan_muokkaus_ja_poisto">
+    <div class="form-group">
+        <label>Käyttäjätunnus</label>
+        <input name="kayttajatunnus" class="form-control" value="{{asiakas.kayttajatunnus}}" type="text">
+
+    </div>
+
+    <div class="form-group">
+        <label>Salasana</label>
+        <input name="salasana" class="form-control" value="{{asiakas.salasana}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Nimimerkki, jota haluat käyttää palvelussa.</label>
+        <input name="nimimerkki" class="form-control" value="{{asiakas.nimimerkki}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Etunimi</label>
+        <input name="etunimi" class="form-control" value="{{asiakas.etunimi}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Sukunimi</label>
+        <input name="sukunimi" class="form-control" value="{{asiakas.sukunimi}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Syntymäaika YYYY-MM-DD</label>
+        <input name="syntymaaika" class="form-control" value="{{asiakas.syntymaaika}}" type="text">
+
+    </div>
+    <div class="radio">
+        {% if asiakas.sukupuoli == "M" %}
+        <label><input type="radio" name="sukupuoli" value="M" checked>mies</label>
+        {% endif %}
+        {% if asiakas.sukupuoli == "N" %}
+        <label><input type="radio" name="sukupuoli" value="M">mies</label>
+        {% endif %}
+    </div>
+    <div class="radio">
+        {% if asiakas.sukupuoli == "M" %}
+        <label><input type="radio" name="sukupuoli" value="N">nainen</label>
+        {% endif %}
+        {% if asiakas.sukupuoli == "N" %}
+                <label><input type="radio" name="sukupuoli" value="N" checked>nainen</label>
+
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Katuosoite</label>
+        <input name="katuosoite" class="form-control" value="{{asiakas.katuosoite}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Postinumero</label>
+        <input name="postinumero" class="form-control" value="{{asiakas.postinumero}}" type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label>Paikkakunta</label>
+        <input name="paikkakunta" class="form-control" value="{{asiakas.paikkakunta}}" type="text">
+
+    </div>
+
+
+
+    <div class="form-group">
+        <input type="submit" name="action" value="Tallenna" class="btn btn-primary"></input>
+    </div>
+    <div class="form-group">
+       <input type="submit" name="action" value="Poista" class="btn btn-primary"></input>
+    </div>
+</form>
+
+
+
+{% endblock %}
