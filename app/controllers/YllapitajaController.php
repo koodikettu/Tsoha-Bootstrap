@@ -32,5 +32,11 @@ class YllapitajaController extends BaseController {
             Redirect::to('/yllapitajan_kayttajalistaus', array('message' => 'Tervetuloa takaisin ' . $yllapitaja->kayttajatunnus . '!'));
         }
     }
+    
+    public static function logout() {
+        $_SESSION['kayttaja']=null;
+        $_SESSION['yllapitajaid']= null;
+        Redirect::to('/etusivu', array('message' => 'Olet kirjautunut ulos!'));
+    }
 
 }

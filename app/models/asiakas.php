@@ -188,8 +188,15 @@ class Asiakas extends BaseModel {
     
         public function validoi_syntymaaika() {
         $errors= array();
-        if(strlen($this->syntymaaika)!=10)
-            $errors[]= 'Syntymäajan on oltava muotoa YYYY-MM-DD';
+        $date_arr=explode('-', $this->syntymaaika);
+        if(!$date_arr[0] || !$date_arr[1] || !$date_arr[2]) {
+            $errors[]='Syntymäaika ei ole vaditussa muodossa';
+        }
+        if(!checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
+           $errors[]= 'Syntymäajan on oltava muotoa YYYY-MM-DD'; 
+        }
+        
+            
         return $errors;
     }
     

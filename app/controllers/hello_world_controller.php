@@ -60,6 +60,7 @@ class HelloWorldController extends BaseController {
     }
 
     public static function yllapitajan_kayttajalistaus() {
+        self::check_yllapitaja_logged_in();
         $asiakkaat = Asiakas::all();
         View::make('suunnitelmat/yllapitajan_kayttajalistaus.html', array('asiakkaat' => $asiakkaat));
     }

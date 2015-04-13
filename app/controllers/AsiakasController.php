@@ -38,19 +38,18 @@ class AsiakasController extends BaseController {
 
 //        Kint::dump($params);
         $errors = $asiakas->errors();
-        if(count($errors)== 0) {
+        if (count($errors) == 0) {
 
-        $asiakas->save();
+            $asiakas->save();
 
-        Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '!'));
-        }
-        else {
+            Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '!'));
+        } else {
             View::make('/suunnitelmat/rekisteroityminen.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
     public static function naytaKayttaja($kayttajatunnus) {
-                self::check_yllapitaja_logged_in();
+        self::check_yllapitaja_logged_in();
         $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
 //        Kint::dump($kayttaja);
         View::make('suunnitelmat/kayttajatiedot.html', array('kayttaja' => $kayttaja));
@@ -64,7 +63,7 @@ class AsiakasController extends BaseController {
     }
 
     public static function yllapitajan_muokkaus_ja_poisto() {
-                self::check_yllapitaja_logged_in();
+        self::check_yllapitaja_logged_in();
         $params = $_POST;
 //            Kint::trace();
 //            Kint::dump($params);
