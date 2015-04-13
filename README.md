@@ -41,5 +41,7 @@ Kirjautuminen on toteutettu tällä hetkellä ainoastaan ylläpitäjäkäyttäj�
 Ylläpitäjän kirjautuminen onnistuu navigaatiopaneelin oikeassa laidassa olevasta kirjautumispainikkeesta. Samaan kohtaan tulee kirjautuneelle ylläpitäjälle logout-painike. Ylläpitäjän kirjautuminen testataan ylläpitäjän käyttäjälistausnäkymässä (edellinen linkki).
 
 Kirjautuminen onnistuu seuraavilla tunnuksilla:
+
 käyttäjätunnus: admin
+
 salasana: anasalas
