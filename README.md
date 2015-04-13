@@ -45,3 +45,6 @@ Kirjautuminen onnistuu seuraavilla tunnuksilla:
 käyttäjätunnus: admin
 
 salasana: anasalas
+
+
+Erittäin alustava käyttöohje löytyy repositorion doc-kansiosta nimellä kayttoohje.md 
