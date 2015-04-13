@@ -22,7 +22,7 @@ class Asiakas extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validoi_etunimi','validoi_sukunimi','validoi_nimimerkki','validoi_kayttajatunnus','validoi_salasana','validoi_syntymaaika','validoi_sukupuoli','validoi_katuosoite','validoi_postinumero','validoi_paikkakunta');
+        $this->validators = array('validoi_etunimi', 'validoi_sukunimi', 'validoi_nimimerkki', 'validoi_kayttajatunnus', 'validoi_salasana', 'validoi_syntymaaika', 'validoi_sukupuoli', 'validoi_katuosoite', 'validoi_postinumero', 'validoi_paikkakunta');
     }
 
     public static function all() {
@@ -127,113 +127,116 @@ class Asiakas extends BaseModel {
 
 //        Kint::trace();
 //        Kint::dump($row);
-
-
     }
-    
-        public function update_asiakastiedot($params) {
+
+    public function update_asiakastiedot($params) {
         $query = DB::connection()->prepare('UPDATE asiakas SET kayttajatunnus=:kayttajatunnus, salasana=:salasana, etunimi=:etunimi, sukunimi=:sukunimi, nimimerkki=:nimimerkki, syntymaaika=:syntymaaika, sukupuoli=:sukupuoli, katuosoite=:katuosoite, postinumero=:postinumero, paikkakunta=:paikkakunta WHERE asiakasID=:asiakasid');
         $query->execute(array('kayttajatunnus' => $params['kayttajatunnus'], 'salasana' => $params['salasana'], 'etunimi' => $params['etunimi'], 'sukunimi' => $params['sukunimi'], 'nimimerkki' => $params['nimimerkki'], 'syntymaaika' => $params['syntymaaika'], 'sukupuoli' => $params['sukupuoli'], 'katuosoite' => $params['katuosoite'], 'postinumero' => $params['postinumero'], 'paikkakunta' => $params['paikkakunta'], 'asiakasid' => $this->asiakasid));
 
 //        Kint::trace();
 //        Kint::dump($row);
-
-
     }
-    
+
     public function validoi_etunimi() {
-        $errors= array();
-        if(!$this->val_strlen($this->etunimi, 2))
-            $errors[]= 'Etunimessä on oltava vähintään 2 merkkiä';
-        if(!$this->notNull($this->etunimi))
-            $errors[]= 'Etunimi ei saa olla tyhjä';
+        $errors = array();
+        if (!$this->val_strlen($this->etunimi, 2))
+            $errors[] = 'Etunimessä on oltava vähintään 2 merkkiä';
+        if (!$this->notNull($this->etunimi))
+            $errors[] = 'Etunimi ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_sukunimi() {
-        $errors= array();
-        if(!$this->val_strlen($this->sukunimi, 2))
-            $errors[]= 'Sukunimessä on oltava vähintään 2 merkkiä';
-        if(!$this->notNull($this->sukunimi))
-            $errors[]= 'Sukunimi ei saa olla tyhjä';
+
+    public function validoi_sukunimi() {
+        $errors = array();
+        if (!$this->val_strlen($this->sukunimi, 2))
+            $errors[] = 'Sukunimessä on oltava vähintään 2 merkkiä';
+        if (!$this->notNull($this->sukunimi))
+            $errors[] = 'Sukunimi ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_kayttajatunnus() {
-        $errors= array();
-        if(!$this->val_strlen($this->kayttajatunnus, 3))
-            $errors[]= 'Käyttäjätunnuksessa on oltava vähintään 3 merkkiä';
-        if(!$this->notNull($this->kayttajatunnus))
-            $errors[]= 'Käyttäjätunnus ei saa olla tyhjä';
+
+    public function validoi_kayttajatunnus() {
+        $errors = array();
+        if (!$this->val_strlen($this->kayttajatunnus, 3))
+            $errors[] = 'Käyttäjätunnuksessa on oltava vähintään 3 merkkiä';
+        if (!$this->notNull($this->kayttajatunnus))
+            $errors[] = 'Käyttäjätunnus ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_nimimerkki() {
-        $errors= array();
-        if(!$this->val_strlen($this->nimimerkki, 3))
-            $errors[]= 'Nimimerkissä on oltava vähintään 3 merkkiä';
-        if(!$this->notNull($this->nimimerkki))
-            $errors[]= 'Nimimerkki ei saa olla tyhjä';
+
+    public function validoi_nimimerkki() {
+        $errors = array();
+        if (!$this->val_strlen($this->nimimerkki, 3))
+            $errors[] = 'Nimimerkissä on oltava vähintään 3 merkkiä';
+        if (!$this->notNull($this->nimimerkki))
+            $errors[] = 'Nimimerkki ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_salasana() {
-        $errors= array();
-        if(!$this->val_strlen($this->salasana, 6))
-            $errors[]= 'Salasanassa on oltava vähintään 6 merkkiä';
-        if(!$this->notNull($this->salasana))
-            $errors[]= 'Salasana ei saa olla tyhjä';
+
+    public function validoi_salasana() {
+        $errors = array();
+        if (!$this->val_strlen($this->salasana, 6))
+            $errors[] = 'Salasanassa on oltava vähintään 6 merkkiä';
+        if (!$this->notNull($this->salasana))
+            $errors[] = 'Salasana ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_syntymaaika() {
-        $errors= array();
-        $date_arr=explode('-', $this->syntymaaika);
-        if(!$date_arr[0] || !$date_arr[1] || !$date_arr[2]) {
-            $errors[]='Syntymäaika ei ole vaditussa muodossa';
+
+    public function validoi_syntymaaika() {
+        $errors = array();
+        $date_arr = array();
+        $date_arr = explode('-', $this->syntymaaika);
+        if (!$this->val_strlen($this->syntymaaika, 10))
+            $errors[] = 'Syntymäajassa on oltava vähintään 10 merkkiä: YYYY-MM-DD';
+        if (substr($this->syntymaaika,4,1) != '-' && substr($this->syntymaaika,7,1)!='-') {
+            $errors[] = 'Päivämääräerottimena on käytettävä merkkiä -';
+        } else if (!(is_numeric(substr($this->syntymaaika,0,4))) && is_numeric(substr($this->syntymaaika,5,2)) && is_numeric(substr($this->syntymaaika,8,2))) {
+            $errors[]='Syntymäaika ei ole muodossa YYYY-MM-DD';
         }
-        if(!checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
-           $errors[]= 'Syntymäajan on oltava muotoa YYYY-MM-DD'; 
+              
+        else if (!$date_arr[0] || !$date_arr[1] || !$date_arr[2]) {
+            $errors[] = 'Syntymäaika ei ole vaditussa muodossa';
         }
-        
-            
+        else if (!checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
+            $errors[] = 'Syntymäajan on oltava muotoa YYYY-MM-DD';
+        }
+
+
         return $errors;
     }
-    
-        public function validoi_sukupuoli() {
-        $errors= array();
-        if($this->sukupuoli!='M' && $this->sukupuoli!='F')
-            $errors[]= 'Sukupuolen on oltava M tai F';
+
+    public function validoi_sukupuoli() {
+        $errors = array();
+        if ($this->sukupuoli != 'M' && $this->sukupuoli != 'F')
+            $errors[] = 'Sukupuolen on oltava M tai F';
         return $errors;
     }
-    
-        public function validoi_katuosoite() {
-        $errors= array();
-        if(!$this->val_strlen($this->katuosoite, 3))
-            $errors[]= 'Katunimessä on oltava vähintään 3 merkkiä';
-        if(!$this->notNull($this->katuosoite))
-            $errors[]= 'Katunimi ei saa olla tyhjä';
+
+    public function validoi_katuosoite() {
+        $errors = array();
+        if (!$this->val_strlen($this->katuosoite, 3))
+            $errors[] = 'Katunimessä on oltava vähintään 3 merkkiä';
+        if (!$this->notNull($this->katuosoite))
+            $errors[] = 'Katunimi ei saa olla tyhjä';
         return $errors;
     }
-    
-        public function validoi_postinumero() {
-        $errors= array();
-        if(strlen($this->postinumero)!=5)
-            $errors[]= 'Postinumerossa on oltava 5 numeroa';
-        if(!is_numeric($this->postinumero))
-            $errors[]= 'Postinumeron on oltava numero';
+
+    public function validoi_postinumero() {
+        $errors = array();
+        if (strlen($this->postinumero) != 5)
+            $errors[] = 'Postinumerossa on oltava 5 numeroa';
+        if (!is_numeric($this->postinumero))
+            $errors[] = 'Postinumeron on oltava numero';
         return $errors;
     }
-    
-        public function validoi_paikkakunta() {
-        $errors= array();
-        if(!$this->val_strlen($this->paikkakunta, 2))
-            $errors[]= 'Paikkakunnassa on oltava vähintään 2 merkkiä';
-        if(!$this->notNull($this->paikkakunta))
-            $errors[]= 'Paikkakunta ei saa olla tyhjä';
+
+    public function validoi_paikkakunta() {
+        $errors = array();
+        if (!$this->val_strlen($this->paikkakunta, 2))
+            $errors[] = 'Paikkakunnassa on oltava vähintään 2 merkkiä';
+        if (!$this->notNull($this->paikkakunta))
+            $errors[] = 'Paikkakunta ei saa olla tyhjä';
         return $errors;
     }
-    
-    
 
 }

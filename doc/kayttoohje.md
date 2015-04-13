@@ -8,4 +8,6 @@ käyttäjätunnus: admin
 
 salasana: anasalas
 
-Kirjauduttuaan ylläpitäjä saa nähtäväkseen sovelluksen asiakaslistauksen. Ylläpitäjä voi tutkia käyttäjien muille käyttäjille näkyviä profiilitietoja Näytä-painiketta painamalla. Ylläpitäjä voi poistaa muokata käyttäjän asiakastietoja tai poistaa käyttäjän kokonaan muokkaa/poista-painiketta klikkaamalla aukeavasta muokkausnäkymästä.
+Kirjauduttuaan ylläpitäjä saa nähtäväkseen sovelluksen asiakaslistauksen. Ylläpitäjä voi tutkia käyttäjien muille käyttäjille näkyviä profiilitietoja Näytä-painiketta painamalla. Ylläpitäjä voi muokata käyttäjän asiakastietoja tai poistaa käyttäjän kokonaan muokkaa/poista-painiketta klikkaamalla aukeavasta muokkausnäkymästä.
+
+Uuden käyttäjän lisääminen tapahtuu täyttämällä rekisteröitymislomake, johon on linkki palvelun etusivulta.
