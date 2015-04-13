@@ -31,11 +31,11 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 CRUD-nelikko on toteutettu tietokohteelle Asiakas.
 
 Uuden asiakkaan luominen:
-http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen/
+http://marklaak.users.cs.helsinki.fi/ystavapalvelu/rekisteroityminen
 Rekisteröitymisen yhteydessä on toteutettu myös mallin validoiminen.
 
 Asiakkaan tietojen listaus, muuttaminen ja poistaminen on tällä hetkellä toteutettu ainoastaan ylläpitäjän käyttöliittymistä:
-http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus/
+http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus
 
 Kirjautuminen on toteutettu tällä hetkellä ainoastaan ylläpitäjäkäyttäjälle.
 Ylläpitäjän kirjautuminen onnistuu navigaatiopaneelin oikeassa laidassa olevasta kirjautumispainikkeesta. Samaan kohtaan tulee kirjautuneelle ylläpitäjälle logout-painike. Ylläpitäjän kirjautuminen testataan ylläpitäjän käyttäjälistausnäkymässä (edellinen linkki).
