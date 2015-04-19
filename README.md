@@ -46,5 +46,20 @@ käyttäjätunnus: admin
 
 salasana: anasalas
 
-
 Erittäin alustava käyttöohje löytyy repositorion doc-kansiosta nimellä kayttoohje.md 
+
+## Viikko 5 ##
+
+1. Toteutettu uloskirjautuminen ja estetetty kirjautumattoman käyttäjän pääsy sivuille, jotka ovat vain kirjautuneille käyttäjille.
+Kirjautumissivut:
+Ylläpitäjä:
+http://marklaak.users.cs.helsinki.fi/ystavapalvelu/yllapitajan_kayttajalistaus
+Käyttäjä
+http://marklaak.users.cs.helsinki.fi/ystavapalvelu/
+Käyttäjätilejä voi testata esim. seuraavilla käyttäjätunnuksilla
+käyttäjätunnus: av_dude, salasana 123456
+käyttäjätunnus: bb-mint, salasana 123456
+
+2. Toteutettu uusi tietokohde Viesti
+Käyttäjä voi lähettää viestin toiselle käyttäjälle kirjautumalla sisään, hakemalla muut käyttäjät, menemällä käyttäjän tietonäkymään ja kirjoittamalla viestin sen alaosassa olevaan lomakkeeseen.
+Tällä hetkellä viestit eivät vielä näy käyttäjille, mutta ne näkyvät ylläpitäjälle. Ylläpitäjän on kirjauduttava sisään ja valittava painike viestilistaus, jolloin näytetään kaikki järjestelmään talletetut viestit.

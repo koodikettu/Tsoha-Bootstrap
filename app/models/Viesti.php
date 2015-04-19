@@ -178,9 +178,9 @@ class Viesti extends BaseModel {
 
     public function validoi_sisalto() {
         $errors = array();
-        if (!$this->val_strlen($this->etunimi, 3))
+        if (!$this->val_strlen($this->sisalto, 3))
             $errors[] = 'Viestissä on oltava vähintään 3 merkkiä';
-        if (!$this->notNull($this->etunimi))
+        if (!$this->notNull($this->sisalto))
             $errors[] = 'Viesti ei saa olla tyhjä';
         return $errors;
     }

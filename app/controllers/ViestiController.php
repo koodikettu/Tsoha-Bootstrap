@@ -16,10 +16,11 @@ class ViestiController extends BaseController {
     //put your code here
 
     public static function store() {
+        self::check_kayttaja_logged_in();
         $params = $_POST;
 
         $attributes = array(
-            'lahettaja' => $params['lahettaja'],
+            'lahettaja' => $_SESSION['kayttajaid'],
             'vastaanottaja' => $params['vastaanottaja'],
             'sisalto' => $params['sisalto']
         );
@@ -31,9 +32,9 @@ class ViestiController extends BaseController {
 
             $viesti->save();
 
-            Redirect::to('/etusivu', array('message' => 'Viestisi on lähetetty.'));
+            Redirect::to('/hakutulokset', array('message' => 'Viestisi on lähetetty.'));
         } else {
-            View::make('/suunnitelmat/viestin_lahettaminen.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('/suunnitelmat/esittely_julkinen.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 

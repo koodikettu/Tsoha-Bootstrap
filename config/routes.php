@@ -55,6 +55,10 @@ $routes->post('/rekisteroityminen', function() {
     AsiakasController::store();
 });
 
+$routes->post('/viestin_lahetys', function() {
+    ViestiController::store();
+});
+
 $routes->get('/viestien_listaus', function() {
     HelloWorldController::viestien_listaus();
 });
