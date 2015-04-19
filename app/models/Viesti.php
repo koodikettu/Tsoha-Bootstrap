@@ -39,6 +39,23 @@ class Viesti extends BaseModel {
         return $viestit;
     }
 
+        public static function yllapitajan_viestilistaus() {
+        $query = DB::connection()->prepare('SELECT * FROM Viesti, Asiakas');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $viestit = array();
+        foreach ($rows as $row) {
+            $viestit[] = new Viesti(array(
+                'viestiid' => $row['viestiid'],
+                'lahettaja' => $row['lahettaja'],
+                'vastaanottaja' => $row['vastaanottaja'],
+                'sisalto' => $row['sisalto']
+            ));
+        }
+
+        return $viestit;
+    }
+    
     public static function haku() {
         $k = AsiakasController::get_kayttaja_logged_in();
 

@@ -142,6 +142,36 @@ class Asiakas extends BaseModel {
 
         return null;
     }
+    
+        public static function get_kayttaja_by_nimimerkki($nm) {
+        $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE nimimerkki= :nimimerkki LIMIT 1');
+        $query->execute(array(':nimimerkki' => $nm));
+        $row = $query->fetch();
+
+//                Kint::trace();
+//        Kint::dump($row);
+
+        if ($row) {
+            $asiakas = new Asiakas(array(
+                'asiakasid' => $row['asiakasid'],
+                'etunimi' => $row['etunimi'],
+                'sukunimi' => $row['sukunimi'],
+                'nimimerkki' => $row['nimimerkki'],
+                'kayttajatunnus' => $row['kayttajatunnus'],
+                'salasana' => $row['salasana'],
+                'syntymaaika' => $row['syntymaaika'],
+                'sukupuoli' => $row['sukupuoli'],
+                'katuosoite' => $row['katuosoite'],
+                'postinumero' => $row['postinumero'],
+                'paikkakunta' => $row['paikkakunta'],
+                'haettu_ika_max' => $row['haettu_ika_max'],
+                'haettu_ika_min' => $row['haettu_ika_min'],
+                'haettu_sukupuoli' => $row['haettu_sukupuoli'],
+                'esittelyteksti' => $row['esittelyteksti']
+            ));
+            return $asiakas;
+        }
+    }
 
     public static function haeKayttaja($kayttajatunnus) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE kayttajatunnus= :kayttajatunnus LIMIT 1');

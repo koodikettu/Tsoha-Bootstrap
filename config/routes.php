@@ -62,6 +62,10 @@ $routes->get('/viestien_listaus', function() {
 $routes->get('/yllapitajan_kayttajalistaus', function() {
     HelloWorldController::yllapitajan_kayttajalistaus();
 });
+
+$routes->get('/yllapitajan_viestilistaus', function() {
+    YllapitajaController::yllapitajan_viestilistaus();
+});
 $routes->get('/viestin_lahettaminen', function() {
     HelloWorldController::viestin_lahettaminen();
 });
@@ -71,6 +75,10 @@ $routes->get('/viestiin_vastaaminen', function() {
 
 $routes->get('/kayttaja/:kayttajatunnus', function($kayttajatunnus) {
     AsiakasController::naytaKayttaja($kayttajatunnus);
+});
+
+$routes->get('/esittely/:nimimerkki', function($nimimerkki) {
+    AsiakasController::nayta_esittelysivu($nimimerkki);
 });
 
 $routes->get('/yllapitajan_muokkausnakyma/:kayttajatunnus', function($kayttajatunnus) {

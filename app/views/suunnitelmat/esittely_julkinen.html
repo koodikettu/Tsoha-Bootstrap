@@ -3,20 +3,17 @@
 
 <h1>Ystäväpalvelu</h1>
 
-<h2>Käyttäjäprofiili: Pelimies</h2>
+<h2>Käyttäjä: {{kohde.nimimerkki}}</h2>
 
 <ul>
-    <li><strong>Sukupuoli: </strong>mies</li>
-    <li><strong>Ikä: </strong>27</li>
-    <li><strong>Paikkakunta: </strong>Helsinki</li>
-    <li><strong>Sukupuoli: </strong>mies</li>
+    <li><strong>Sukupuoli: </strong>{{kohde.sukupuoli}}</li>
+    <li><strong>Syntymäaika: </strong>{{kohde.syntymaaika}}</li>
+    <li><strong>Paikkakunta: </strong>{{kohde.paikkakunta}}</li>
 </ul>
 <h3>Kuvaus</h3>
 <p>
-    Olen iloinen ja reipas tietojenkäsittelytieteen maisteriopiskelija.
-    Pidän kovasti tietokonepeleistä ja energiajuomista.
+    {{kohde.esittelyteksti}}
 </p>
-<p>
-<button class="btn btn-primary">Lähetä viesti tälle käyttäjälle</button>
-</p>
+
+
 {% endblock %}

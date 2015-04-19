@@ -110,6 +110,15 @@ class AsiakasController extends BaseController {
 //        Kint::dump($asiakas);
         View::make('suunnitelmat/kayttajatiedot.html', array('kayttaja' => $asiakas));
     }
+    
+        public static function nayta_esittelysivu($nimimerkki) {
+        BaseController::check_kayttaja_logged_in();
+        $kohde = Asiakas::get_kayttaja_by_nimimerkki($nimimerkki);
+
+//                Kint::trace();
+//        Kint::dump($asiakas);
+        View::make('suunnitelmat/esittely_julkinen.html', array('kohde' => $kohde));
+    }
 
     public static function nayta_hakutulokset() {
         self::check_kayttaja_logged_in();
