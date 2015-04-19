@@ -12,8 +12,35 @@
 </p>
 <p>Jos olet jo rekisteröitynyt käyttäjäksi, kirjaudu sisään
 käyttääksesi palvelua.
-<button class="btn btn-primary">Kirjaudu sisään</button>
 </p>
+
+{% if error %}
+<div class="alert alert-danger">
+    <ul>
+
+        <li>{{error}}</li>
+
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/">
+    <div class="form-group">
+        <label>Käyttäjätunnus</label>
+        <input class="form-control" name="kayttajatunnus" value="{{kayttajatunnus}}" type="text">
+        
+    </div>
+    <div class="form-group">
+        <label>Salasana</label>
+        <input class="form-control" name="salasana" type="password">
+        
+    </div>
+        
+   
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+    </div>
+</form>
 
 <p>Jos olet uusi käyttäjä, ole hyvä ja rekisteröidy palvelun
     käyttäjäksi.

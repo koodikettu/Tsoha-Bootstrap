@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Käyttäjä: {{kayttaja.nimimerkki}}</h2>
+
+<h3>Haun tulokset:</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <th>Nimimerkki</th>
+    <th>Sukupuoli</th>
+    <th>Syntymävuosi</th>
+    <th>Paikkakunta</th>
+    <th>Haettu sukupuoli</th>
+    <th>Haettu ikä</th>
+    <th>Esittelyteksti</th>
+    <th></th>
+</thead>
+<tbody>
+    {% for asiakas in asiakkaat %}
+    <tr>
+        <td>{{asiakas.nimimerkki}}</td>
+        <td>{{asiakas.sukupuoli}}</td>
+        <td>{{asiakas.syntymaaika | slice(0,4)}}</td>
+        <td>{{asiakas.paikkakunta}}</td>
+        <td>{{asiakas.haettu_sukupuoli}}</td>
+        <td>{{asiakas.haettu_ika_min}} - {{asiakas.haettu_ika_max}}</td>
+        <td>{{asiakas.esittelyteksti}}</td>
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+
+{% endblock %}
+

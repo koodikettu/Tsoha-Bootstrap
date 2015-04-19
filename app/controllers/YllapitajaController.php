@@ -34,7 +34,7 @@ class YllapitajaController extends BaseController {
     }
     
     public static function logout() {
-        $_SESSION['kayttaja']=null;
+        $_SESSION['kayttajaid']=null;
         $_SESSION['yllapitajaid']= null;
         Redirect::to('/etusivu', array('message' => 'Olet kirjautunut ulos!'));
     }

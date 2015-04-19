@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Ylläpitäjä: admin</h2>
+
+<h3>Ystäväpalvelun käyttäjät:</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <th>Kayttajatunnus</th>
+    <th>Nimi</th>
+    <th>Katuosoite</th>
+    <th>Postinumero</th>
+    <th>Paikkakunta</th>
+    <th>Tarkemmat tiedot</th>
+    <th>Laskutus</th>
+    <th>Muokkaus / Poisto</th>
+</thead>
+<tbody>
+    {% for viesti in viestit %}
+    <tr>
+        <td>{{viesti.lahettaja}}</td>
+        <td>{{viesti.vastaanottaja}}</td>
+        <td>{{viesti.sisalto}}</td>
+        
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
+        <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/yllapitajan_muokkausnakyma/{{asiakas.kayttajatunnus}}">Muokkaa/Poista</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+
+{% endblock %}

@@ -53,6 +53,40 @@ class Asiakas extends BaseModel {
         return $asiakkaat;
     }
 
+    public static function haku() {
+        $k = AsiakasController::get_kayttaja_logged_in();
+
+
+        $query = DB::connection()->prepare('SELECT * FROM Asiakas WHERE asiakasid<>:kayttaja');
+        $query->execute(array('kayttaja' => $k->asiakasid));
+        $rows = $query->fetchAll();
+        $asiakkaat = array();
+        foreach ($rows as $row) {
+            $asiakkaat[] = new Asiakas(array(
+                'asiakasid' => $row['asiakasid'],
+                'etunimi' => $row['etunimi'],
+                'sukunimi' => $row['sukunimi'],
+                'nimimerkki' => $row['nimimerkki'],
+                'kayttajatunnus' => $row['kayttajatunnus'],
+                'salasana' => $row['salasana'],
+                'syntymaaika' => $row['syntymaaika'],
+                'sukupuoli' => $row['sukupuoli'],
+                'katuosoite' => $row['katuosoite'],
+                'postinumero' => $row['postinumero'],
+                'paikkakunta' => $row['paikkakunta'],
+                'haettu_ika_max' => $row['haettu_ika_max'],
+                'haettu_ika_min' => $row['haettu_ika_min'],
+                'haettu_sukupuoli' => $row['haettu_sukupuoli'],
+                'esittelyteksti' => $row['esittelyteksti']
+            ));
+        }
+//        Kint::trace();
+//        Kint::dump($k);
+//        Kint::dump($asiakkaat);
+
+        return $asiakkaat;
+    }
+
     public static function find($asiakasid) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE asiakasid= :asiakasid LIMIT 1');
         $query->execute(array('asiakasid' => $asiakasid));
@@ -78,6 +112,35 @@ class Asiakas extends BaseModel {
             ));
             return $asiakas;
         }
+    }
+
+    public static function authenticate($ktunnus, $ssana) {
+        $query = DB::connection()->prepare('SELECT * FROM Asiakas WHERE kayttajatunnus = :kayttajatunnus AND salasana = :salasana LIMIT 1');
+        $query->execute(array('kayttajatunnus' => $ktunnus, 'salasana' => $ssana));
+
+        $row = $query->fetch();
+        if ($row) {
+            $asiakas = new Asiakas(array(
+                'asiakasid' => $row['asiakasid'],
+                'etunimi' => $row['etunimi'],
+                'sukunimi' => $row['sukunimi'],
+                'nimimerkki' => $row['nimimerkki'],
+                'kayttajatunnus' => $row['kayttajatunnus'],
+                'salasana' => $row['salasana'],
+                'syntymaaika' => $row['syntymaaika'],
+                'sukupuoli' => $row['sukupuoli'],
+                'katuosoite' => $row['katuosoite'],
+                'postinumero' => $row['postinumero'],
+                'paikkakunta' => $row['paikkakunta'],
+                'haettu_ika_max' => $row['haettu_ika_max'],
+                'haettu_ika_min' => $row['haettu_ika_min'],
+                'haettu_sukupuoli' => $row['haettu_sukupuoli'],
+                'esittelyteksti' => $row['esittelyteksti']
+            ));
+            return $asiakas;
+        }
+
+        return null;
     }
 
     public static function haeKayttaja($kayttajatunnus) {
@@ -188,16 +251,13 @@ class Asiakas extends BaseModel {
         $date_arr = explode('-', $this->syntymaaika);
         if (!$this->val_strlen($this->syntymaaika, 10))
             $errors[] = 'Syntymäajassa on oltava vähintään 10 merkkiä: YYYY-MM-DD';
-        if (substr($this->syntymaaika,4,1) != '-' && substr($this->syntymaaika,7,1)!='-') {
+        if (substr($this->syntymaaika, 4, 1) != '-' && substr($this->syntymaaika, 7, 1) != '-') {
             $errors[] = 'Päivämääräerottimena on käytettävä merkkiä -';
-        } else if (!(is_numeric(substr($this->syntymaaika,0,4))) && is_numeric(substr($this->syntymaaika,5,2)) && is_numeric(substr($this->syntymaaika,8,2))) {
-            $errors[]='Syntymäaika ei ole muodossa YYYY-MM-DD';
-        }
-              
-        else if (!$date_arr[0] || !$date_arr[1] || !$date_arr[2]) {
+        } else if (!(is_numeric(substr($this->syntymaaika, 0, 4))) && is_numeric(substr($this->syntymaaika, 5, 2)) && is_numeric(substr($this->syntymaaika, 8, 2))) {
+            $errors[] = 'Syntymäaika ei ole muodossa YYYY-MM-DD';
+        } else if (!$date_arr[0] || !$date_arr[1] || !$date_arr[2]) {
             $errors[] = 'Syntymäaika ei ole vaditussa muodossa';
-        }
-        else if (!checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
+        } else if (!checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
             $errors[] = 'Syntymäajan on oltava muotoa YYYY-MM-DD';
         }
 

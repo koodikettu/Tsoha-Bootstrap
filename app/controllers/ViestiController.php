@@ -11,7 +11,7 @@
  *
  * @author markku
  */
-class AsiakasController extends BaseController {
+class ViestiController extends BaseController {
 
     //put your code here
 
@@ -19,51 +19,25 @@ class AsiakasController extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-            'etunimi' => $params['etunimi'],
-            'sukunimi' => $params['sukunimi'],
-            'nimimerkki' => $params['nimimerkki'],
-            'kayttajatunnus' => $params['kayttajatunnus'],
-            'salasana' => $params['salasana'],
-            'syntymaaika' => $params['syntymaaika'],
-            'sukupuoli' => $params['sukupuoli'],
-            'katuosoite' => $params['katuosoite'],
-            'postinumero' => $params['postinumero'],
-            'paikkakunta' => $params['paikkakunta']
-//                'haettu_ika_max' => $params['haettu_ika_max'],
-//                'haettu_ika_min' => $params['haettu_ika_min'],
-//                'haettu_sukupuoli' => $params['haettu_sukupuoli'],
-//                'esittelyteksti' => $params['esittelyteksti']
+            'lahettaja' => $params['lahettaja'],
+            'vastaanottaja' => $params['vastaanottaja'],
+            'sisalto' => $params['sisalto']
         );
-        $asiakas = new Asiakas($attributes);
+        $viesti = new Viesti($attributes);
 
 //        Kint::dump($params);
-        $errors = $asiakas->errors();
+        $errors = $viesti->errors();
         if (count($errors) == 0) {
 
-            $asiakas->save();
+            $viesti->save();
 
-            Redirect::to('/etusivu', array('message' => 'Tervetuloa palvelun käyttäjäksi, ' . $params['etunimi'] . '! Voit nyt kirjautua sisään palveluun.'));
+            Redirect::to('/etusivu', array('message' => 'Viestisi on lähetetty.'));
         } else {
-            View::make('/suunnitelmat/rekisteroityminen.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('/suunnitelmat/viestin_lahettaminen.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
-    public static function kasittele_kayttajan_kirjautuminen() {
-
-        $params = $_POST;
-
-        $asiakas = Asiakas::authenticate($params['kayttajatunnus'], $params['salasana']);
-
-
-//        Kint::trace();
-//        Kint::dump($asiakas);
-        if (!$asiakas) {
-            View::make('/suunnitelmat/etusivu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajatunnus' => $params['kayttajatunnus']));
-        } else {
-            $_SESSION['kayttajaid'] = $asiakas->asiakasid;
-            Redirect::to('/kayttajatiedot', array('message' => 'Tervetuloa takaisin ' . $asiakas->kayttajatunnus . '!', 'asiakas' => $asiakas));
-        }
-    }
+    
 
     public static function naytaKayttaja($kayttajatunnus) {
         self::check_yllapitaja_logged_in();

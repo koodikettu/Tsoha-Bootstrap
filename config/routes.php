@@ -4,6 +4,18 @@ $routes->get('/', function() {
     HelloWorldController::index();
 });
 
+$routes->post('/', function() {
+    AsiakasController::kasittele_kayttajan_kirjautuminen();
+});
+
+$routes->get('/kayttajatiedot', function() {
+    AsiakasController::nayta_kayttajatiedot();
+});
+
+$routes->get('/hakutulokset', function() {
+    AsiakasController::nayta_hakutulokset();
+});
+
 $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
@@ -70,6 +82,10 @@ $routes->post('/yllapitajan_muokkaus_ja_poisto', function () {
 });
 
 $routes->post('/logout', function() {
+    YllapitajaController::logout();
+});
+
+$routes->get('/logout', function() {
     YllapitajaController::logout();
 });
 
