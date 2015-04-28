@@ -135,21 +135,19 @@ class Viesti extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto ,aikaleima, luettu) VALUES (:lahettaja, :vastaanottaja, :sisalto, now()::timestamp(0), false) RETURNING viestiid');
+        $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto ,aikaleima, luettu) VALUES (:lahettaja, :vastaanottaja, :sisalto, now()::timestamp(0), false) RETURNING viestiid, aikaleima');
         $query->execute(array('lahettaja' => $this->lahettaja, 'vastaanottaja' => $this->vastaanottaja, 'sisalto' => $this->sisalto));
         $row = $query->fetch();
 // Kint::trace();
 // Kint::dump($row);
         $this->viestiid = $row['viestiid'];
+        $this->aikaleima = $row['aikaleima'];
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Viesti SET lahettaja=:lahettaja, vastaanottaja=:vastaanottaja, sisalto=:sisalto, aikaleima=now()::timestamp(0), luettu=:luettu WHERE viestiid=:viestiid RETURNING aikaleima');
-        $query->execute(array('lahettaja' => $this->lahettaja, 'vastaanottaja' => $this->vastaanottaja, 'sisalto' => $this->sisalto, 'luettu' => $this->luettu, 'viestiid' => $this->viestiid));
+        $query = DB::connection()->prepare('UPDATE Viesti SET sisalto=:sisalto, aikaleima=now()::timestamp(0), luettu=false WHERE viestiid=:viestiid');
+        $query->execute(array('sisalto' => $this->sisalto, 'viestiid' => $this->viestiid));
         $row = $query->fetch();
-
-
-        $this->aikaleima = $row['aikaleima'];
     }
 
     public function merkitse_luetuksi() {
@@ -160,7 +158,7 @@ class Viesti extends BaseModel {
 
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Viesti WHERE viestiid=:viestiid');
-        $query->execute(array('viesti' => $this->viestiid));
+        $query->execute(array('viestiid' => $this->viestiid));
 
 //        Kint::trace();
 //        Kint::dump($row);

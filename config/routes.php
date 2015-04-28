@@ -59,6 +59,14 @@ $routes->post('/viestin_lahetys', function() {
     ViestiController::store();
 });
 
+$routes->get('/viestin_muokkaus/:viestiid', function($viestiid) {
+    ViestiController::viestin_muokkaus($viestiid);
+});
+
+$routes->post('/viestin_paivitys/', function() {
+    ViestiController::viestin_paivitys();
+});
+
 $routes->get('/viestien_listaus', function() {
     YleisController::viestien_listaus();
 });
