@@ -5,9 +5,6 @@
 
 <h2>Käyttäjä: {{kayttaja.nimimerkki}} (kayttajatunnus: {{kayttaja.kayttajatunnus}})</h2>
 
-<div class="alert alert-success">
-    {{message}}
-</div>
 
 <h3>Haun tulokset:</h3>
 
@@ -39,7 +36,8 @@
     {% endfor %}
 </tbody>
 </table>
-
+<p><a href="{{base_path}}/kayttajatiedot" class="btn btn-primary">Takaisin</a>
+</p>
 
 
 {% endblock %}

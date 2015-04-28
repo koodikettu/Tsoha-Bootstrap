@@ -1,6 +1,6 @@
 <?php
 
-class HelloWorldController extends BaseController {
+class YleisController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja

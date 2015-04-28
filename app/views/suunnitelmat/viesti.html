@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Viesti</h2>
+
+<ul>
+    <li><strong>Lähettäjä: </strong>{{lahettaja.nimimerkki}}</li>
+    <li><strong>Lähetetty: </strong>{{viesti.aikaleima}}</li>
+
+</ul>
+<h3>Sisältö</h3>
+<p>
+    {{viesti.sisalto}}
+</p>
+
+
+<p><a href="{{base_path}}/saapuneet_viestit" class="btn btn-primary">Näytä kaikki saapuneet viestit</a>
+</p>
+
+
+{% endblock %}

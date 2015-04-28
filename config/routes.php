@@ -1,7 +1,7 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    YleisController::index();
 });
 
 $routes->post('/', function() {
@@ -17,26 +17,26 @@ $routes->get('/hakutulokset', function() {
 });
 
 $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+    YleisController::sandbox();
 });
 
 $routes->get('/etusivu', function() {
-    HelloWorldController::etusivu();
+    YleisController::etusivu();
 });
 
 $routes->get('/esittely_julkinen', function() {
-    HelloWorldController::esittely_julkinen();
+    YleisController::esittely_julkinen();
 });
 
 $routes->get('/profiilin_muokkaus', function() {
-    HelloWorldController::profiilin_muokkaus();
+    YleisController::profiilin_muokkaus();
 });
 
 $routes->get('/tulosten_listaus', function() {
-    HelloWorldController::tulosten_listaus();
+    YleisController::tulosten_listaus();
 });
 $routes->get('/kirjautuminen', function() {
-    HelloWorldController::kirjautuminen();
+    YleisController::kirjautuminen();
 });
 
 $routes->get('/yllapitajan_kirjautuminen', function() {
@@ -48,7 +48,7 @@ $routes->post('/yllapitajan_kirjautuminen', function() {
 });
 
 $routes->get('/rekisteroityminen', function() {
-    HelloWorldController::rekisteroityminen();
+    YleisController::rekisteroityminen();
 });
 
 $routes->post('/rekisteroityminen', function() {
@@ -60,21 +60,21 @@ $routes->post('/viestin_lahetys', function() {
 });
 
 $routes->get('/viestien_listaus', function() {
-    HelloWorldController::viestien_listaus();
+    YleisController::viestien_listaus();
 });
 
 $routes->get('/yllapitajan_kayttajalistaus', function() {
-    HelloWorldController::yllapitajan_kayttajalistaus();
+    YleisController::yllapitajan_kayttajalistaus();
 });
 
 $routes->get('/yllapitajan_viestilistaus', function() {
     YllapitajaController::yllapitajan_viestilistaus();
 });
 $routes->get('/viestin_lahettaminen', function() {
-    HelloWorldController::viestin_lahettaminen();
+    YleisController::viestin_lahettaminen();
 });
 $routes->get('/viestiin_vastaaminen', function() {
-    HelloWorldController::viestiin_vastaaminen();
+    YleisController::viestiin_vastaaminen();
 });
 
 $routes->get('/kayttaja/:kayttajatunnus', function($kayttajatunnus) {
@@ -85,12 +85,24 @@ $routes->get('/esittely/:nimimerkki', function($nimimerkki) {
     AsiakasController::nayta_esittelysivu($nimimerkki);
 });
 
+$routes->get('/viesti/:nimimerkki', function($viesti) {
+    ViestiController::viesti($viesti);
+});
+
 $routes->get('/yllapitajan_muokkausnakyma/:kayttajatunnus', function($kayttajatunnus) {
     AsiakasController::yllapitajan_muokkausnakyma($kayttajatunnus);
 });
 
 $routes->post('/yllapitajan_muokkaus_ja_poisto', function () {
     AsiakasController::yllapitajan_muokkaus_ja_poisto();
+});
+
+$routes->get('/saapuneet_viestit', function () {
+    ViestiController::kayttajan_saapuneet_viestit();
+});
+
+$routes->get('/lahetetyt_viestit', function () {
+    ViestiController::kayttajan_lahettamat_viestit();
 });
 
 $routes->post('/logout', function() {

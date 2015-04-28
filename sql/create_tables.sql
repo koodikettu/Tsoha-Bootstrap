@@ -2,7 +2,7 @@ CREATE TABLE Asiakas(
 	asiakasID SERIAL PRIMARY KEY,
 	etunimi varchar(15) NOT NULL,
 	sukunimi varchar(25) NOT NULL,
-	nimimerkki varchar(20) NOT NULL,
+	nimimerkki varchar(20) UNIQUE NOT NULL,
 	kayttajatunnus varchar(20) UNIQUE NOT NULL,
 	salasana varchar(20) NOT NULL,
 	syntymaaika DATE NOT NULL,
@@ -27,7 +27,9 @@ CREATE TABLE Viesti(
 	viestiID SERIAL PRIMARY KEY,
 	lahettaja integer REFERENCES Asiakas (asiakasID),
 	vastaanottaja integer REFERENCES Asiakas (asiakasID),
-	sisalto varchar(2000)
+	sisalto varchar(2000),
+        aikaleima timestamp,
+        luettu boolean
 );
 
 CREATE TABLE Lukuoikeus(
