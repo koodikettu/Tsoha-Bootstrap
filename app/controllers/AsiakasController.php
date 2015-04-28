@@ -76,7 +76,7 @@ class AsiakasController extends BaseController {
         self::check_yllapitaja_logged_in();
         $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
 //        Kint::dump($kayttaja);
-        View::make('suunnitelmat/yllapitajan_muokkausnakyma.html', array('asiakas' => $kayttaja));
+        View::make('yllapitonakymat/yllapitajan_muokkausnakyma.html', array('asiakas' => $kayttaja));
     }
 
     public static function yllapitajan_muokkaus_ja_poisto() {
@@ -89,18 +89,21 @@ class AsiakasController extends BaseController {
 //            Kint::trace();
 //            Kint::dump($asiakas);
             $asiakas->update_asiakastiedot($params);
-            HelloWorldController::yllapitajan_kayttajalistaus();
+            AsiakasController::yllapitajan_kayttajalistaus();
         }
         if ($params['action'] == 'Poista') {
             $asiakas = Asiakas::haeKayttaja($params['kayttajatunnus']);
             $asiakas->destroy();
-            HelloWorldController::yllapitajan_kayttajalistaus();
+            AsiakasController::yllapitajan_kayttajalistaus();
         }
     }
-
-    public static function index() {
-        View::make('suunnitelmat/etusivu.html');
+    
+        public static function yllapitajan_kayttajalistaus() {
+        self::check_yllapitaja_logged_in();
+        $asiakkaat = Asiakas::all();
+        View::make('yllapitonakymat/yllapitajan_kayttajalistaus.html', array('asiakkaat' => $asiakkaat));
     }
+
 
     public static function nayta_kayttajatiedot() {
         self::check_kayttaja_logged_in();

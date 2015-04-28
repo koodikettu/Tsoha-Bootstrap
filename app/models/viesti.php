@@ -45,7 +45,7 @@ class Viesti extends BaseModel {
     }
 
     public static function kayttajan_saapuneet_viestit() {
-        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE vastaanottaja=:vastaanottajaid');
+        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE vastaanottaja=:vastaanottajaid ORDER BY luettu, aikaleima DESC');
         $query->execute(array('vastaanottajaid' => $_SESSION['kayttajaid']));
         $query->execute();
         $rows = $query->fetchAll();
@@ -69,7 +69,7 @@ class Viesti extends BaseModel {
     }
 
     public static function kayttajan_lahettamat_viestit() {
-        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE lahettaja=:lahettajaid');
+        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE lahettaja=:lahettajaid ORDER BY aikaleima DESC');
         $query->execute(array('lahettajaid' => $_SESSION['kayttajaid']));
         $query->execute();
         $rows = $query->fetchAll();

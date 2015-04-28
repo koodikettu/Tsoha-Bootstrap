@@ -30,11 +30,11 @@ class YleisController extends BaseController {
     }
 
     public static function etusivu() {
-        View::make('suunnitelmat/etusivu.html');
+        View::make('asiakasnakymat/etusivu.html');
     }
 
     public static function esittely_julkinen() {
-        View::make('suunnitelmat/esittely_julkinen.html');
+        View::make('asiakasnakymat/esittely_julkinen.html');
     }
 
     public static function profiilin_muokkaus() {
@@ -59,11 +59,7 @@ class YleisController extends BaseController {
         View::make('suunnitelmat/viestien_listaus.html');
     }
 
-    public static function yllapitajan_kayttajalistaus() {
-        self::check_yllapitaja_logged_in();
-        $asiakkaat = Asiakas::all();
-        View::make('suunnitelmat/yllapitajan_kayttajalistaus.html', array('asiakkaat' => $asiakkaat));
-    }
+
 
     public static function viestin_lahettaminen() {
         View::make('suunnitelmat/viestin_lahettaminen.html');

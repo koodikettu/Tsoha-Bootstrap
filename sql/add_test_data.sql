@@ -3,8 +3,11 @@ INSERT INTO Asiakas (etunimi, sukunimi, nimimerkki, kayttajatunnus, salasana, sy
 
 INSERT INTO Asiakas (etunimi, sukunimi, nimimerkki, kayttajatunnus, salasana, syntymaaika, sukupuoli, katuosoite, postinumero, paikkakunta, haettu_ika_min, haettu_ika_max, haettu_sukupuoli, esittelyteksti) VALUES ('Minttu','Korhonen','Barbie','bb-mint','123456','1990-04-24','F','Helsinginkatu 21 C 5','00240','Helsinki',20,30,'M','Olen jazz-tanssia ja kuorolaulua harrastava matemaatikko.');
 
-INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto) VALUES (1,2,'Hei, haluaisitko lähetä keskiviikkoiltana kahville?');
-INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto) VALUES (2,1,'Hei, keskiviikko ei käy, miten olis torstai?');
+INSERT INTO Asiakas (etunimi, sukunimi, nimimerkki, kayttajatunnus, salasana, syntymaaika, sukupuoli, katuosoite, postinumero, paikkakunta, haettu_ika_min, haettu_ika_max, haettu_sukupuoli, esittelyteksti) VALUES ('Sami','Lahtinen','Samppa','samppa','123456','1989-04-24','M','Porvoonkatu 4 A 5','00240','Helsinki',20,30,'F','Harrastan benjihyppyä ja postimerkkeilyä.');
+
+
+INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto, aikaleima, luettu) VALUES (1,2,'Hei, haluaisitko lähetä keskiviikkoiltana kahville?', '2015-04-21 12:00:00', false);
+INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto, aikaleima, luettu) VALUES (2,1,'Hei, keskiviikko ei käy, miten olis torstai?', '2015-04-21 12:46:00', false);
 
 INSERT INTO Esittelysivu (asiakasID, sisalto, salainen) VALUES (1,'En ole vielä keksinyt tähän mitään...', true);
 INSERT INTO Esittelysivu (asiakasID, sisalto, salainen) VALUES (2,'Salainen paheeni on kettukarkit!',false);

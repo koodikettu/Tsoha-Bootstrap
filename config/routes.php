@@ -72,11 +72,11 @@ $routes->get('/viestien_listaus', function() {
 });
 
 $routes->get('/yllapitajan_kayttajalistaus', function() {
-    YleisController::yllapitajan_kayttajalistaus();
+    AsiakasController::yllapitajan_kayttajalistaus();
 });
 
 $routes->get('/yllapitajan_viestilistaus', function() {
-    YllapitajaController::yllapitajan_viestilistaus();
+    ViestiController::yllapitajan_viestilistaus();
 });
 $routes->get('/viestin_lahettaminen', function() {
     YleisController::viestin_lahettaminen();

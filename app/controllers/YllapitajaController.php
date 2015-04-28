@@ -16,7 +16,7 @@ class YllapitajaController extends BaseController {
     //put your code here
 
     public static function yllapitajan_kirjautuminen() {
-        View::make('suunnitelmat/yllapitajan_kirjautuminen.html');
+        View::make('yllapitonakymat/yllapitajan_kirjautuminen.html');
     }
 
     public static function kasittele_yllapitajan_kirjautuminen() {
@@ -26,19 +26,14 @@ class YllapitajaController extends BaseController {
         $yllapitaja = Yllapitaja::authenticate($params['kayttajatunnus'], $params['salasana']);
 
         if (!$yllapitaja) {
-            View::make('/suunnitelmat/yllapitajan_kirjautuminen.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajatunnus' => $params['kayttajatunnus']));
+            View::make('/yllapitonakymat/yllapitajan_kirjautuminen.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajatunnus' => $params['kayttajatunnus']));
         } else {
             $_SESSION['yllapitajaid'] = $yllapitaja->yllapitajaid;
             Redirect::to('/yllapitajan_kayttajalistaus', array('message' => 'Tervetuloa takaisin ' . $yllapitaja->kayttajatunnus . '!'));
         }
     }
 
-    public static function yllapitajan_viestilistaus() {
-        self::check_yllapitaja_logged_in();
-        $viestit = Viesti::all();
-        $kayttajat = Asiakas::all();
-        View::make('suunnitelmat/yllapitajan_viestilistaus.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
-    }
+
 
     public static function logout() {
         $_SESSION['kayttajaid'] = null;

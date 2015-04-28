@@ -80,43 +80,6 @@ class ViestiController extends BaseController {
         }
     }
 
-    public static function naytaKayttaja($kayttajatunnus) {
-        self::check_yllapitaja_logged_in();
-        $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
-//        Kint::dump($kayttaja);
-        View::make('suunnitelmat/kayttajatiedot.html', array('kayttaja' => $kayttaja));
-    }
-
-    public static function yllapitajan_muokkausnakyma($kayttajatunnus) {
-        self::check_yllapitaja_logged_in();
-        $kayttaja = Asiakas::haeKayttaja($kayttajatunnus);
-//        Kint::dump($kayttaja);
-        View::make('suunnitelmat/yllapitajan_muokkausnakyma.html', array('asiakas' => $kayttaja));
-    }
-
-    public static function yllapitajan_muokkaus_ja_poisto() {
-        self::check_yllapitaja_logged_in();
-        $params = $_POST;
-//            Kint::trace();
-//            Kint::dump($params);
-        if ($params['action'] == 'Tallenna') {
-            $asiakas = Asiakas::haeKayttaja($params['kayttajatunnus']);
-//            Kint::trace();
-//            Kint::dump($asiakas);
-            $asiakas->update_asiakastiedot($params);
-            HelloWorldController::yllapitajan_kayttajalistaus();
-        }
-        if ($params['action'] == 'Poista') {
-            $asiakas = Asiakas::haeKayttaja($params['kayttajatunnus']);
-            $asiakas->destroy();
-            HelloWorldController::yllapitajan_kayttajalistaus();
-        }
-    }
-
-    public static function index() {
-        View::make('suunnitelmat/etusivu.html');
-    }
-
     public static function viesti($id) {
         self::check_kayttaja_logged_in();
         $viesti = Viesti::hae_viesti($id);
@@ -133,17 +96,6 @@ class ViestiController extends BaseController {
         View::make('suunnitelmat/viesti.html', array('lahettaja' => $lahettaja, 'viesti' => $viesti));
     }
 
-    public static function nayta_hakutulokset() {
-        self::check_kayttaja_logged_in();
-        $kayttaja = self::get_kayttaja_logged_in();
-        $asiakkaat = Asiakas::haku();
-
-//        Kint::trace();
-//        Kint::dump($asiakkaat);
-//        Kint::dump($kayttaja);
-        View::make('suunnitelmat/hakutulokset.html', array('kayttaja' => $kayttaja, 'asiakkaat' => $asiakkaat));
-    }
-
     public static function kayttajan_saapuneet_viestit() {
         self::check_kayttaja_logged_in();
         $viestit = Viesti::kayttajan_saapuneet_viestit();
@@ -156,6 +108,13 @@ class ViestiController extends BaseController {
         $viestit = Viesti::kayttajan_lahettamat_viestit();
         $kayttajat = Asiakas::all();
         View::make('suunnitelmat/lahetetyt_viestit.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
+    }
+
+    public static function yllapitajan_viestilistaus() {
+        self::check_yllapitaja_logged_in();
+        $viestit = Viesti::all();
+        $kayttajat = Asiakas::all();
+        View::make('yllapitonakymat/yllapitajan_viestilistaus.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
     }
 
 }
