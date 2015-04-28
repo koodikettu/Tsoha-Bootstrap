@@ -135,7 +135,7 @@ class Viesti extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto) VALUES (:lahettaja, :vastaanottaja, :sisalto) RETURNING viestiid');
+        $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto ,aikaleima, luettu) VALUES (:lahettaja, :vastaanottaja, :sisalto, now()::timestamp(0), false) RETURNING viestiid');
         $query->execute(array('lahettaja' => $this->lahettaja, 'vastaanottaja' => $this->vastaanottaja, 'sisalto' => $this->sisalto));
         $row = $query->fetch();
 // Kint::trace();

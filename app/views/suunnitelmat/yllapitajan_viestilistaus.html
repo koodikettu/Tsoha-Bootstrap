@@ -28,7 +28,10 @@
         <td>{{vastaanottaja.kayttajatunnus}}</td>
         <td>{{viesti.sisalto}}</td>
         <td>{{viesti.aikaleima}}</td>
-        <td>{{viesti.luettu}}</td>
+        <td>
+            {% if not viesti.luettu %}<label class="label label-primary">Lukematon</label>{% endif %}
+            {% if viesti.luettu %}<label class="label label-default">Luettu</label>{% endif %}
+        </td>
 
         <!--        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
                 <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
