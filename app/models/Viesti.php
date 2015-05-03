@@ -115,24 +115,7 @@ class Viesti extends BaseModel {
         return $viesti;
     }
 
-//    public static function yllapitajan_viestilistaus() {
-//        $query = DB::connection()->prepare('SELECT * FROM Viesti, Asiakas');
-//        $query->execute();
-//        $rows = $query->fetchAll();
-//        $viestit = array();
-//        foreach ($rows as $row) {
-//            $viestit[] = new Viesti(array(
-//                'viestiid' => $row['viestiid'],
-//                'lahettaja' => $row['lahettaja'],
-//                'vastaanottaja' => $row['vastaanottaja'],
-//                'sisalto' => $row['sisalto'],
-//                'aikaleima' => $row['aikaleima'],
-//                'luettu' => $row['luettu']
-//            ));
-//        }
-//
-//        return $viestit;
-//    }
+
 
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto ,aikaleima, luettu) VALUES (:lahettaja, :vastaanottaja, :sisalto, now()::timestamp(0), false) RETURNING viestiid, aikaleima');

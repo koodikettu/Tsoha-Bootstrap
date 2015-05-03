@@ -84,52 +84,7 @@ class SivuController extends BaseController {
         }
     }
 
-//    public static function viestin_muokkaus($vid) {
-//        self::check_kayttaja_logged_in();
-//        $viesti = Viesti::hae_viesti($vid);
-//        if ($_SESSION['kayttajaid'] == $viesti->lahettaja) {
-//
-//            $kohde = Asiakas::find($viesti->vastaanottaja);
-//
-//            View::make('/asiakasnakymat/viestin_muokkaus.html', array('viesti' => $viesti, 'kohde' => $kohde));
-//        } else {
-//            $asiakas = Asiakas::find($_SESSION['kayttajaid']);
-//            Redirect::to('/kayttajatiedot', array('message' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.', 'kayttaja' => $asiakas));
-//        }
-//    }
 
-//    public static function viestin_paivitys() {
-//        self::check_kayttaja_logged_in();
-//        $params = $_POST;
-//
-//        if ($params['action'] == 'poista') {
-//            $viesti = Viesti::hae_viesti($params['viestiid']);
-//            $viesti->destroy();
-//            Redirect::to('/lahetetyt_viestit', array('message' => 'Viestisi on poistettu!'));
-//        }
-//        if ($params['action'] == 'paivita') {
-//
-//            $attributes = array(
-//                'viestiid' => intval($params['viestiid']),
-//                'lahettaja' => $_SESSION['kayttajaid'],
-//                'vastaanottaja' => intval($params['vastaanottaja']),
-//                'sisalto' => $params['sisalto'],
-//                'luettu' => false,
-//            );
-//            $viesti = new Viesti($attributes);
-//
-////        Kint::dump($viesti);
-//            $errors = $viesti->errors();
-//            if (count($errors) == 0) {
-//
-//                $viesti->update();
-//
-//                Redirect::to('/lahetetyt_viestit', array('message' => 'Muutokset viestiin on tallennettu.'));
-//            } else {
-//                View::make('/suunnitelmat/esittely_julkinen.html', array('errors' => $errors, 'attributes' => $attributes));
-//            }
-//        }
-//    }
 
     public static function kayttajan_sivut() {
         self::check_kayttaja_logged_in();

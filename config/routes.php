@@ -166,4 +166,24 @@ $routes->get('/esittelysivu/:sid', function($sid) {
 }
 );
 
+$routes->get('/asiakastietojen_muokkaus', function() {
+    AsiakasController::asiakastietojenMuokkaus();
+}
+);
+
+$routes->post('/asiakastietojen_muokkaus', function() {
+    AsiakasController::asiakastietojenPaivitys();
+}
+);
+
+$routes->get('/profiilitietojen_muokkaus', function() {
+    AsiakasController::profiilitietojenMuokkaus();
+}
+);
+
+$routes->post('/profiilitietojen_muokkaus', function() {
+    AsiakasController::profiilitietojenPaivitys();
+}
+);
+
 

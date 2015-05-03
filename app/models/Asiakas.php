@@ -87,6 +87,40 @@ class Asiakas extends BaseModel {
         return $asiakkaat;
     }
 
+    public static function filtterihaku() {
+        $k = AsiakasController::get_kayttaja_logged_in();
+
+
+        $query = DB::connection()->prepare('SELECT * FROM Asiakas WHERE asiakasid<>:kayttaja');
+        $query->execute(array('kayttaja' => $k->asiakasid));
+        $rows = $query->fetchAll();
+        $asiakkaat = array();
+        foreach ($rows as $row) {
+            $asiakkaat[] = new Asiakas(array(
+                'asiakasid' => $row['asiakasid'],
+                'etunimi' => $row['etunimi'],
+                'sukunimi' => $row['sukunimi'],
+                'nimimerkki' => $row['nimimerkki'],
+                'kayttajatunnus' => $row['kayttajatunnus'],
+                'salasana' => $row['salasana'],
+                'syntymaaika' => $row['syntymaaika'],
+                'sukupuoli' => $row['sukupuoli'],
+                'katuosoite' => $row['katuosoite'],
+                'postinumero' => $row['postinumero'],
+                'paikkakunta' => $row['paikkakunta'],
+                'haettu_ika_max' => $row['haettu_ika_max'],
+                'haettu_ika_min' => $row['haettu_ika_min'],
+                'haettu_sukupuoli' => $row['haettu_sukupuoli'],
+                'esittelyteksti' => $row['esittelyteksti']
+            ));
+        }
+//        Kint::trace();
+//        Kint::dump($k);
+//        Kint::dump($asiakkaat);
+
+        return $asiakkaat;
+    }
+
     public static function find($asiakasid) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE asiakasid= :asiakasid LIMIT 1');
         $query->execute(array('asiakasid' => $asiakasid));
@@ -142,8 +176,8 @@ class Asiakas extends BaseModel {
 
         return null;
     }
-    
-        public static function get_kayttaja_by_nimimerkki($nm) {
+
+    public static function get_kayttaja_by_nimimerkki($nm) {
         $query = DB::connection()->prepare('SELECT * FROM asiakas WHERE nimimerkki= :nimimerkki LIMIT 1');
         $query->execute(array(':nimimerkki' => $nm));
         $row = $query->fetch();
@@ -212,6 +246,22 @@ class Asiakas extends BaseModel {
 //        Kint::dump($row);
 
         $this->asiakasid = $row['asiakasid'];
+    }
+
+    public function profiiliUpdate() {
+        $query = DB::connection()->prepare('UPDATE asiakas SET haettu_ika_min=:himin, haettu_ika_max=:himax, haettu_sukupuoli=:his, esittelyteksti=:et WHERE asiakasID=:asiakasid');
+        $query->execute(array('himax' => $this->haettu_ika_max, 'himin' => $this->haettu_ika_min, 'his' => $this->haettu_sukupuoli, 'et' => $this->esittelyteksti, 'asiakasid' => $this->asiakasid));
+
+        $row = $query->fetch();
+        Kint::dump($this);
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE asiakas SET kayttajatunnus=:kayttajatunnus, salasana=:salasana, etunimi=:etunimi, sukunimi=:sukunimi, nimimerkki=:nimimerkki, syntymaaika=:syntymaaika, sukupuoli=:sukupuoli, katuosoite=:katuosoite, postinumero=:postinumero, paikkakunta=:paikkakunta WHERE asiakasID=:asiakasid');
+        $query->execute(array('kayttajatunnus' => $this->kayttajatunnus, 'salasana' => $this->salasana, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'nimimerkki' => $this->nimimerkki, 'syntymaaika' => $this->syntymaaika, 'sukupuoli' => $this->sukupuoli, 'katuosoite' => $this->katuosoite, 'postinumero' => $this->postinumero, 'paikkakunta' => $this->paikkakunta, 'asiakasid' => $this->asiakasid));
+
+        $row = $query->fetch();
+        Kint::dump($this);
     }
 
     public function destroy() {

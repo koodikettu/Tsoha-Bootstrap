@@ -10,11 +10,12 @@
     {% if sivu.salainen %}<label class="label label-danger">Salainen</label>{% endif %}
 </p>
 
-<h3>{{sivu.otsikko}}</h3>
 
 
-
-<p>{{sivu.sisalto}}
-
-
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">{{sivu.otsikko}}</h3></div>
+    <div class="panel-body">
+        {{sivu.sisalto}}
+    </div>
+</div>
     {% endblock %}

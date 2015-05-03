@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Muokkaa profiilitietojasi</h2>
+
+Nämä tiedot näkyvät muille käyttäjille.
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+<form method="post" action="{{base_path}}/profiilitietojen_muokkaus">
+    <div class="form-group">
+        <label>Haettu ikäryhmä, syntymävuosi alkaen</label>
+        <input name="haettu_ika_min" class="form-control" value="{{asiakas.haettu_ika_min}}" type="text">
+
+    </div>
+
+    <div class="form-group">
+        <label>Haettu ikäryhmä, syntymävuosi päättyen</label>
+        <input name="haettu_ika_max" class="form-control" value="{{asiakas.haettu_ika_max}}" type="text">
+
+
+    <div class="radio">
+        {% if asiakas.haettu_sukupuoli == "M" or asiakas.haettu_sukupuoli is null %}
+        <label><input type="radio" name="haettu_sukupuoli" value="M" checked>mies</label>
+        {% endif %}
+        {% if asiakas.haettu_sukupuoli == "F" %}
+        <label><input type="radio" name="haettu_sukupuoli" value="M">mies</label>
+        {% endif %}
+    </div>
+    <div class="radio">
+        {% if asiakas.haettu_sukupuoli == "M" or asiakas.haettu_sukupuoli is null%}
+        <label><input type="radio" name="haettu_sukupuoli" value="F">nainen</label>
+        {% endif %}
+        {% if asiakas.haettu_sukupuoli == "F" %}
+        <label><input type="radio" name="haettu_sukupuoli" value="F" checked>nainen</label>
+
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Esittelyteksti</label>
+        <input name="esittelyteksti" class="form-control" value="{{asiakas.esittelyteksti}}" type="text">
+
+
+    </div>
+
+
+
+
+    <div class="form-group">
+        <input type="submit" name="action" value="Tallenna" class="btn btn-primary"></input>
+    </div>
+
+</form>
+
+
+
+{% endblock %}

@@ -9,13 +9,21 @@
     <li><strong>Sukupuoli: </strong>{{kohde.sukupuoli}}</li>
     <li><strong>Syntymäaika: </strong>{{kohde.syntymaaika}}</li>
     <li><strong>Paikkakunta: </strong>{{kohde.paikkakunta}}</li>
+    <li><strong>Haettu sukupuoli: </strong>{{kohde.haettu_sukupuoli}}</li>
+    <li><strong>Haettu ikäryhmä: </strong> syntymävuodet {{kohde.haettu_ika_min}} - {{kohde.haettu_ika_max}}</li>
 </ul>
-<h3>Kuvaus</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Kuvaus</h3></div>
+    <div class="panel-body">
+        {{kohde.esittelyteksti}}
+    </div>
+</div>
+<!--<h3>Kuvaus</h3>
 <p>
     {{kohde.esittelyteksti}}
-</p>
+</p>-->
 {% if sivut %}
-<h3>Käyttäjän {{kohde.nimimerkki}} ylimääräiset esittelysivut</h3>
+<h3>Käyttäjän {{kohde.nimimerkki}} esittelysivut</h3>
 
 <table class="table table-striped table-bordered">
     <thead>
