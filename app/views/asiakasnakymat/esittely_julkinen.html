@@ -14,6 +14,36 @@
 <p>
     {{kohde.esittelyteksti}}
 </p>
+{% if sivut %}
+<h3>Käyttäjän {{kohde.nimimerkki}} ylimääräiset esittelysivut</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <th>Sivu</th>
+    <th>Otsikko</th>
+    <th>Julkisuus</th>
+    <th>Näytä</th>
+
+</thead>
+<tbody>
+    {% for sivu in sivut %}
+    <tr>
+        <td>{{loop.index}}</td>
+
+        <td>{{sivu.otsikko}}</td>
+
+        <td>
+            {% if not sivu.salainen %}<label class="label label-success">Julkinen</label>{% endif %}
+            {% if sivu.salainen %}<label class="label label-danger">Salainen</label>{% endif %}
+        </td>
+
+        <td><a class="btn btn-default btn-sm" href="{{base_path}}/esittelysivu/{{sivu.sivuid}}">Näytä</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endif %}
+
 <h3>Lähetä viesti käyttäjälle {{kohde.nimimerkki}}</h3>
 
 {% if errors %}
@@ -27,16 +57,16 @@
 {% endif %}
 
 <form method="post" action="{{base_path}}/viestin_lahetys">
-    
-<!--    <div class="radio">
-            <label><input type="radio" name="lahettaja" checked>näytä viestin lähettäjä</label>
-    </div>-->
-<!--    <div class="radio">
-            <label><input type="radio" name="lahettaja">lähetä viesti anonyymisti</label>
-    </div>-->
-        
-<input type="hidden" name="vastaanottaja" value="{{kohde.asiakasid}}">
-   
+
+    <!--    <div class="radio">
+                <label><input type="radio" name="lahettaja" checked>näytä viestin lähettäjä</label>
+        </div>-->
+    <!--    <div class="radio">
+                <label><input type="radio" name="lahettaja">lähetä viesti anonyymisti</label>
+        </div>-->
+
+    <input type="hidden" name="vastaanottaja" value="{{kohde.asiakasid}}">
+
     <div class="form-group">
         <label for="kuvaus">Viesti:</label>
         <textarea class="form-control" name="sisalto"></textarea>
@@ -47,4 +77,8 @@
         <button type="submit" class="btn btn-primary">Lähetä</button>
     </div>
 </form>
+
+<p>Myönnä käytäjälle {{kohde.nimimerkki}} lukuoikeuksia salaisiin sivuihisi:
+    <a href="{{base_path}}/lukuoikeuksien_myontaminen/{{kohde.asiakasid}}" class="btn btn-primary">Myönnä lukuoikeuksia</a>
+</p>
 {% endblock %}

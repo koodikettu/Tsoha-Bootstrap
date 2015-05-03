@@ -61,6 +61,7 @@ class AsiakasController extends BaseController {
             View::make('/suunnitelmat/etusivu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajatunnus' => $params['kayttajatunnus']));
         } else {
             $_SESSION['kayttajaid'] = $asiakas->asiakasid;
+            $_SESSION['yllapitajaid'] = NULL;
             Redirect::to('/kayttajatiedot', array('message' => 'Tervetuloa takaisin ' . $asiakas->kayttajatunnus . '!', 'asiakas' => $asiakas));
         }
     }
@@ -126,10 +127,12 @@ class AsiakasController extends BaseController {
     public static function nayta_esittelysivu($nimimerkki) {
         BaseController::check_kayttaja_logged_in();
         $kohde = Asiakas::get_kayttaja_by_nimimerkki($nimimerkki);
+//        $julkisetSivut = Esittelysivu::haeJulkisetSivut($kohde->asiakasid);
+        $sivut=Esittelysivu::haeJulkisetJaSalaisetSivut($kohde->asiakasid);
 
 //                Kint::trace();
-//        Kint::dump($asiakas);
-        View::make('suunnitelmat/esittely_julkinen.html', array('kohde' => $kohde));
+//        Kint::dump($sivut);
+        View::make('asiakasnakymat/esittely_julkinen.html', array('kohde' => $kohde, 'sivut' => $sivut));
     }
 
     public static function nayta_hakutulokset() {

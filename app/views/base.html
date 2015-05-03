@@ -40,6 +40,12 @@
                     <ul class="nav navbar-nav">
                         <!-- Navigaation linkit -->
                         <li><a href="{{base_path}}">Etusivu</a></li>
+                        {% if user_logged_in %}
+                        <li><a href="{{base_path}}/hakutulokset">Käyttäjät</a></li>
+                        <li><a href="{{base_path}}/saapuneet_viestit">Saapuneet viestit</a></li>
+                        <li><a href="{{base_path}}/lahetetyt_viestit">Lähetetyt viestit</a></li>
+                        <li><a href="{{base_path}}/kayttajan_sivut">Esittelysivut</a></li>
+                        {% endif %}
                     </ul>
                     {% if user_logged_in %}
                     <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">

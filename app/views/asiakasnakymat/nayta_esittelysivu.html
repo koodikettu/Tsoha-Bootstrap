@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ystäväpalvelu</h1>
+
+<h2>Käyttäjän {{sivu.nimimerkki}} esittelysivu</h2>
+
+<p>Tämä esittelysivu on
+    {% if not sivu.salainen %}<label class="label label-success">Julkinen</label>{% endif %}
+    {% if sivu.salainen %}<label class="label label-danger">Salainen</label>{% endif %}
+</p>
+
+<h3>{{sivu.otsikko}}</h3>
+
+
+
+<p>{{sivu.sisalto}}
+
+
+    {% endblock %}

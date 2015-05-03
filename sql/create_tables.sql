@@ -18,23 +18,24 @@ CREATE TABLE Asiakas(
 
 CREATE TABLE Esittelysivu(
 	sivuID SERIAL PRIMARY KEY,
-	asiakasID integer REFERENCES Asiakas (asiakasID),
+	asiakasID integer REFERENCES Asiakas (asiakasID) ON DELETE CASCADE,
 	sisalto varchar(2000),
+        otsikko varchar(100),
 	salainen boolean
 );
 
 CREATE TABLE Viesti(
 	viestiID SERIAL PRIMARY KEY,
-	lahettaja integer REFERENCES Asiakas (asiakasID),
-	vastaanottaja integer REFERENCES Asiakas (asiakasID),
+	lahettaja integer REFERENCES Asiakas (asiakasID) ON DELETE CASCADE,
+	vastaanottaja integer REFERENCES Asiakas (asiakasID) ON DELETE CASCADE,
 	sisalto varchar(2000),
         aikaleima timestamp,
         luettu boolean
 );
 
 CREATE TABLE Lukuoikeus(
-	sivuID integer REFERENCES Esittelysivu (sivuID),
-	asiakasID integer REFERENCES Asiakas (AsiakasID),
+	sivuID integer REFERENCES Esittelysivu (sivuID) ON DELETE CASCADE,
+	asiakasID integer REFERENCES Asiakas (AsiakasID) ON DELETE CASCADE,
 	PRIMARY KEY (sivuID, asiakasID)
 );
 

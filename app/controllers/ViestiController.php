@@ -33,7 +33,7 @@ class ViestiController extends BaseController {
 
             $viesti->save();
 
-            Redirect::to('/hakutulokset', array('message' => 'Viestisi on lähetetty.'));
+            Redirect::to('/lahetetyt_viestit', array('message' => 'Viestisi on lähetetty.'));
         } else {
             View::make('/suunnitelmat/esittely_julkinen.html', array('errors' => $errors, 'attributes' => $attributes));
         }
@@ -42,9 +42,15 @@ class ViestiController extends BaseController {
     public static function viestin_muokkaus($vid) {
         self::check_kayttaja_logged_in();
         $viesti = Viesti::hae_viesti($vid);
-        $kohde = Asiakas::find($viesti->vastaanottaja);
+        if ($_SESSION['kayttajaid'] == $viesti->lahettaja) {
 
-        View::make('/asiakasnakymat/viestin_muokkaus.html', array('viesti' => $viesti, 'kohde' => $kohde));
+            $kohde = Asiakas::find($viesti->vastaanottaja);
+
+            View::make('/asiakasnakymat/viestin_muokkaus.html', array('viesti' => $viesti, 'kohde' => $kohde));
+        } else {
+            $asiakas = Asiakas::find($_SESSION['kayttajaid']);
+            Redirect::to('/kayttajatiedot', array('message' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.', 'kayttaja' => $asiakas));
+        }
     }
 
     public static function viestin_paivitys() {
@@ -83,17 +89,16 @@ class ViestiController extends BaseController {
     public static function viesti($id) {
         self::check_kayttaja_logged_in();
         $viesti = Viesti::hae_viesti($id);
-        if (!($_SESSION['kayttajaid'] == $viesti->vastaanottaja)) {
+        if ($_SESSION['kayttajaid'] == $viesti->vastaanottaja) {
+
+
+            $lahettaja = Asiakas::find($viesti->lahettaja);
+            $viesti->merkitse_luetuksi();
+            View::make('suunnitelmat/viesti.html', array('lahettaja' => $lahettaja, 'viesti' => $viesti));
+        } else {
             $asiakas = Asiakas::find($_SESSION['kayttajaid']);
-            Redirect::to('/kayttajatiedot', array('error' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.', 'kayttaja' => $asiakas));
+            Redirect::to('/kayttajatiedot', array('message' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.', 'kayttaja' => $asiakas));
         }
-        $lahettaja = Asiakas::find($viesti->lahettaja);
-        $viesti->merkitse_luetuksi();
-
-
-//                Kint::trace();
-//        Kint::dump($asiakas);
-        View::make('suunnitelmat/viesti.html', array('lahettaja' => $lahettaja, 'viesti' => $viesti));
     }
 
     public static function kayttajan_saapuneet_viestit() {
@@ -112,9 +117,12 @@ class ViestiController extends BaseController {
 
     public static function yllapitajan_viestilistaus() {
         self::check_yllapitaja_logged_in();
-        $viestit = Viesti::all();
-        $kayttajat = Asiakas::all();
-        View::make('yllapitonakymat/yllapitajan_viestilistaus.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
+//        $viestit = Viesti::all();
+//        $kayttajat = Asiakas::all();
+        $viestit = Viesti::yllapitajanViestilistaus();
+//        Kint::dump($viestit);
+//        echo 'Onkssetää';
+        View::make('yllapitonakymat/yllapitajan_viestilistaus.html', array('viestit' => $viestit));
     }
 
 }

@@ -115,24 +115,24 @@ class Viesti extends BaseModel {
         return $viesti;
     }
 
-    public static function yllapitajan_viestilistaus() {
-        $query = DB::connection()->prepare('SELECT * FROM Viesti, Asiakas');
-        $query->execute();
-        $rows = $query->fetchAll();
-        $viestit = array();
-        foreach ($rows as $row) {
-            $viestit[] = new Viesti(array(
-                'viestiid' => $row['viestiid'],
-                'lahettaja' => $row['lahettaja'],
-                'vastaanottaja' => $row['vastaanottaja'],
-                'sisalto' => $row['sisalto'],
-                'aikaleima' => $row['aikaleima'],
-                'luettu' => $row['luettu']
-            ));
-        }
-
-        return $viestit;
-    }
+//    public static function yllapitajan_viestilistaus() {
+//        $query = DB::connection()->prepare('SELECT * FROM Viesti, Asiakas');
+//        $query->execute();
+//        $rows = $query->fetchAll();
+//        $viestit = array();
+//        foreach ($rows as $row) {
+//            $viestit[] = new Viesti(array(
+//                'viestiid' => $row['viestiid'],
+//                'lahettaja' => $row['lahettaja'],
+//                'vastaanottaja' => $row['vastaanottaja'],
+//                'sisalto' => $row['sisalto'],
+//                'aikaleima' => $row['aikaleima'],
+//                'luettu' => $row['luettu']
+//            ));
+//        }
+//
+//        return $viestit;
+//    }
 
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto ,aikaleima, luettu) VALUES (:lahettaja, :vastaanottaja, :sisalto, now()::timestamp(0), false) RETURNING viestiid, aikaleima');
@@ -171,6 +171,37 @@ class Viesti extends BaseModel {
         if (!$this->notNull($this->sisalto))
             $errors[] = 'Viesti ei saa olla tyhjä';
         return $errors;
+    }
+    
+        public static function yllapitajanViestilistaus() {
+        $haku1 = 'SELECT lah.kayttajatunnus as lahettaja, vas.kayttajatunnus as vastaanottaja, viesti.sisalto as sisalto, viesti.aikaleima as aikaleima, viesti.luettu as luettu ';
+        $haku2 = 'FROM viesti, asiakas as lah, asiakas as vas ';
+        $haku3 = 'WHERE viesti.lahettaja=lah.asiakasid AND viesti.vastaanottaja=vas.asiakasid ';
+        $haku4 = 'ORDER BY aikaleima DESC';
+        $haku=$haku1.$haku2.$haku3.$haku4;
+        $query = DB::connection()->prepare($haku);
+        $query->execute();
+//        $query->execute();
+        $rows = $query->fetchAll();
+        $viestit = array();
+        $i=0;
+        foreach ($rows as $row) {
+            $viestit[$i]=array(
+                'lahettaja' => $row['lahettaja'],
+                'vastaanottaja' => $row['vastaanottaja'],
+                'sisalto' => $row['sisalto'],
+                'aikaleima' => $row['aikaleima'],
+                'luettu' => $row['luettu']
+            );
+            $i++;
+
+        }
+
+//                Kint::trace();
+//        Kint::dump($viestit);
+
+
+        return $viestit;
     }
 
 }

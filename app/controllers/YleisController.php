@@ -30,6 +30,12 @@ class YleisController extends BaseController {
     }
 
     public static function etusivu() {
+        if(self::get_yllapitaja_logged_in()!=null) {
+            Redirect::to('/yllapitajan_kayttajalistaus');
+        }
+        if(self::get_kayttaja_logged_in()!=null) {
+            Redirect::to('/kayttajatiedot');
+        }
         View::make('asiakasnakymat/etusivu.html');
     }
 

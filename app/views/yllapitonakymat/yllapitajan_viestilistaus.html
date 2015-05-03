@@ -18,14 +18,12 @@
 </thead>
 <tbody>
     {% for viesti in viestit %}
-    {% for lahettaja in kayttajat %}
-    {% if lahettaja.asiakasid==viesti.lahettaja %}
-    {% for vastaanottaja in kayttajat %}
-    {% if vastaanottaja.asiakasid==viesti.vastaanottaja %}
+
 
     <tr>
-        <td>{{lahettaja.kayttajatunnus}}</td>
-        <td>{{vastaanottaja.kayttajatunnus}}</td>
+
+        <td>{{viesti.lahettaja}}</td>
+        <td>{{viesti.vastaanottaja}}</td>
         <td>{{viesti.sisalto}}</td>
         <td>{{viesti.aikaleima}}</td>
         <td>
@@ -33,17 +31,14 @@
             {% if viesti.luettu %}<label class="label label-default">Luettu</label>{% endif %}
         </td>
 
-        <!--        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
-                <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
-                <td><a class="btn btn-default btn-sm" href="{{base_path}}/yllapitajan_muokkausnakyma/{{asiakas.kayttajatunnus}}">Muokkaa/Poista</a></td>-->
+
     </tr>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
+
     {% endfor %}
 </tbody>
 </table>
+
+
 <p>
     <a href="{{base_path}}/yllapitajan_kayttajalistaus" class="btn btn-primary">Näytä kayttajalistaus</a>
 </p>

@@ -1,7 +1,7 @@
 <?php
 
 $routes->get('/', function() {
-    YleisController::index();
+    YleisController::etusivu();
 });
 
 $routes->post('/', function() {
@@ -125,3 +125,45 @@ $routes->get('/login', function() {
     YllapitajaController::yllapitajan_kirjautuminen();
 }
 );
+
+$routes->get('/kayttajan_sivut', function() {
+    SivuController::kayttajan_sivut();
+}
+);
+
+$routes->get('/luo_uusi_sivu', function() {
+    SivuController::uusi_esittelysivu();
+}
+);
+
+$routes->post('/luo_uusi_sivu', function() {
+    SivuController::store();
+}
+);
+
+$routes->get('/esittelysivun_muokkaus/:sivuid', function($sivuid) {
+    SivuController::esittelysivun_muokkaus($sivuid);
+}
+);
+
+$routes->post('/esittelysivun_muokkaus', function() {
+    SivuController::esittelysivun_muutos();
+}
+);
+
+$routes->get('/lukuoikeuksien_myontaminen/:kayttajaid', function($kayttajaid) {
+    SivuController::oikeuksien_antaminen($kayttajaid);
+}
+);
+
+$routes->post('/paivita_oikeudet', function() {
+    LukuoikeusController::oikeuksien_paivittaminen();
+}
+);
+
+$routes->get('/esittelysivu/:sid', function($sid) {
+    SivuController::naytaEsittelysivu($sid);
+}
+);
+
+

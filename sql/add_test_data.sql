@@ -9,10 +9,10 @@ INSERT INTO Asiakas (etunimi, sukunimi, nimimerkki, kayttajatunnus, salasana, sy
 INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto, aikaleima, luettu) VALUES (1,2,'Hei, haluaisitko lähetä keskiviikkoiltana kahville?', '2015-04-21 12:00:00', false);
 INSERT INTO Viesti (lahettaja, vastaanottaja, sisalto, aikaleima, luettu) VALUES (2,1,'Hei, keskiviikko ei käy, miten olis torstai?', '2015-04-21 12:46:00', false);
 
-INSERT INTO Esittelysivu (asiakasID, sisalto, salainen) VALUES (1,'En ole vielä keksinyt tähän mitään...', true);
-INSERT INTO Esittelysivu (asiakasID, sisalto, salainen) VALUES (2,'Salainen paheeni on kettukarkit!',false);
+INSERT INTO Esittelysivu (asiakasID, otsikko, sisalto, salainen) VALUES (1, 'Testisivu', 'En ole vielä keksinyt tähän mitään...', true);
+INSERT INTO Esittelysivu (asiakasID, otsikko, sisalto, salainen) VALUES (2, 'Karkkimaku', 'Salainen paheeni on kettukarkit!',false);
 
-INSERT INTO Esittelysivu (asiakasID, sisalto, salainen) VALUES (1, 'En tykkää yhtään mämmistä.',true);
+INSERT INTO Esittelysivu (asiakasID, otsikko, sisalto, salainen) VALUES (1, 'Pääsiäinen', 'En tykkää yhtään mämmistä.',true);
 
 INSERT INTO Lukuoikeus (sivuID, asiakasID) VALUES (3,2);
 
