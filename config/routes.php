@@ -67,9 +67,6 @@ $routes->post('/viestin_paivitys/', function() {
     ViestiController::viestin_paivitys();
 });
 
-$routes->get('/viestien_listaus', function() {
-    YleisController::viestien_listaus();
-});
 
 $routes->get('/yllapitajan_kayttajalistaus', function() {
     AsiakasController::yllapitajan_kayttajalistaus();
@@ -78,12 +75,7 @@ $routes->get('/yllapitajan_kayttajalistaus', function() {
 $routes->get('/yllapitajan_viestilistaus', function() {
     ViestiController::yllapitajan_viestilistaus();
 });
-$routes->get('/viestin_lahettaminen', function() {
-    YleisController::viestin_lahettaminen();
-});
-$routes->get('/viestiin_vastaaminen', function() {
-    YleisController::viestiin_vastaaminen();
-});
+
 
 $routes->get('/kayttaja/:kayttajatunnus', function($kayttajatunnus) {
     AsiakasController::naytaKayttaja($kayttajatunnus);

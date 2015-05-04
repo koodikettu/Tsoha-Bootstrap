@@ -45,20 +45,23 @@ class Viesti extends BaseModel {
     }
 
     public static function kayttajan_saapuneet_viestit() {
-        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE vastaanottaja=:vastaanottajaid ORDER BY luettu, aikaleima DESC');
+        $query = DB::connection()->prepare('SELECT v.viestiid AS viestiid, a.nimimerkki AS lahettaja, v.vastaanottaja AS vastaanottaja, v.sisalto AS sisalto, v.aikaleima AS aikaleima, v.luettu AS luettu FROM Viesti AS v, Asiakas AS a WHERE v.vastaanottaja=:vastaanottajaid AND v.lahettaja=a.asiakasid ORDER BY luettu, aikaleima DESC');
         $query->execute(array('vastaanottajaid' => $_SESSION['kayttajaid']));
-        $query->execute();
         $rows = $query->fetchAll();
+//        Kint::dump($rows);
         $viestit = array();
+        $i=0;
         foreach ($rows as $row) {
-            $viestit[] = new Viesti(array(
+            $viestit[$i]=array(
                 'viestiid' => $row['viestiid'],
                 'lahettaja' => $row['lahettaja'],
                 'vastaanottaja' => $row['vastaanottaja'],
                 'sisalto' => $row['sisalto'],
                 'aikaleima' => $row['aikaleima'],
                 'luettu' => $row['luettu']
-            ));
+            );
+            $i++;
+
         }
 
 //                Kint::trace();
@@ -69,21 +72,25 @@ class Viesti extends BaseModel {
     }
 
     public static function kayttajan_lahettamat_viestit() {
-        $query = DB::connection()->prepare('SELECT * FROM Viesti WHERE lahettaja=:lahettajaid ORDER BY aikaleima DESC');
+        $query = DB::connection()->prepare('SELECT v.viestiid as viestiid, v.lahettaja as lahettaja, a.nimimerkki as vastaanottaja, v.sisalto as sisalto, v.aikaleima as aikaleima, v.luettu as luettu FROM Viesti AS v, Asiakas AS a WHERE v.lahettaja=:lahettajaid AND v.vastaanottaja=a.asiakasid ORDER BY aikaleima DESC');
         $query->execute(array('lahettajaid' => $_SESSION['kayttajaid']));
-        $query->execute();
         $rows = $query->fetchAll();
         $viestit = array();
+        
+        $i=0;
         foreach ($rows as $row) {
-            $viestit[] = new Viesti(array(
+            $viestit[$i]=array(
                 'viestiid' => $row['viestiid'],
                 'lahettaja' => $row['lahettaja'],
                 'vastaanottaja' => $row['vastaanottaja'],
                 'sisalto' => $row['sisalto'],
                 'aikaleima' => $row['aikaleima'],
                 'luettu' => $row['luettu']
-            ));
+            );
+            $i++;
+
         }
+        
 
 //                Kint::trace();
 //        Kint::dump($viestit);

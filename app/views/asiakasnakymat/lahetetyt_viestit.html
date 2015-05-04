@@ -18,13 +18,10 @@
 </thead>
 <tbody>
     {% for viesti in viestit %}
-    {% for vastaanottaja in kayttajat %}
-    {% if vastaanottaja.asiakasid==viesti.vastaanottaja %}
-    {% for lahettaja in kayttajat %}
-    {% if lahettaja.asiakasid==viesti.lahettaja %}
+
 
     <tr>
-        <td><a href="{{base_path}}/esittely/{{vastaanottaja.nimimerkki}}">{{vastaanottaja.nimimerkki}}</a></td>
+        <td><a href="{{base_path}}/esittely/{{viesti.vastaanottaja}}">{{viesti.vastaanottaja}}</a></td>
         <td>{{viesti.sisalto}}</td>
         <td>{{viesti.aikaleima}}</td>
         <td>
@@ -33,15 +30,10 @@
         </td>
         <td><a class="btn btn-default btn-sm" href="{{base_path}}/viestin_muokkaus/{{viesti.viestiid}}">Muokkaa</a></td>
 
-        <!--        <td><a class="btn btn-default btn-sm" href="{{base_path}}/kayttaja/{{asiakas.kayttajatunnus}}">Näytä</a></td>
-                <td><a class="btn btn-default btn-sm" href="#">Laskutustiedot</a></td>
-                <td><a class="btn btn-default btn-sm" href="{{base_path}}/yllapitajan_muokkausnakyma/{{asiakas.kayttajatunnus}}">Muokkaa/Poista</a></td>-->
+
     </tr>
-    {% endif %}
     {% endfor %}
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+
 </tbody>
 </table>
 <p>

@@ -140,16 +140,16 @@ class AsiakasController extends BaseController {
         View::make('asiakasnakymat/esittely_julkinen.html', array('kohde' => $kohde, 'sivut' => $sivut));
     }
 
-    public static function nayta_filtteroidyt_hakutulokset() {
-        self::check_kayttaja_logged_in();
-        $kayttaja = self::get_kayttaja_logged_in();
-        $asiakkaat = Asiakas::filtterihaku();
-
-//        Kint::trace();
-//        Kint::dump($asiakkaat);
-//        Kint::dump($kayttaja);
-        View::make('suunnitelmat/hakutulokset.html', array('kayttaja' => $kayttaja, 'asiakkaat' => $asiakkaat));
-    }
+//    public static function nayta_filtteroidyt_hakutulokset() {
+//        self::check_kayttaja_logged_in();
+//        $kayttaja = self::get_kayttaja_logged_in();
+//        $asiakkaat = Asiakas::filtterihaku();
+//
+////        Kint::trace();
+////        Kint::dump($asiakkaat);
+////        Kint::dump($kayttaja);
+//        View::make('suunnitelmat/hakutulokset.html', array('kayttaja' => $kayttaja, 'asiakkaat' => $asiakkaat));
+//    }
 
     public static function nayta_hakutulokset() {
         self::check_kayttaja_logged_in();
@@ -195,10 +195,6 @@ class AsiakasController extends BaseController {
             'katuosoite' => $params['katuosoite'],
             'postinumero' => $params['postinumero'],
             'paikkakunta' => $params['paikkakunta']
-//                'haettu_ika_max' => $params['haettu_ika_max'],
-//                'haettu_ika_min' => $params['haettu_ika_min'],
-//                'haettu_sukupuoli' => $params['haettu_sukupuoli'],
-//                'esittelyteksti' => $params['esittelyteksti']
         );
         $asiakas = new Asiakas($attributes);
         $errors = $asiakas->errors();

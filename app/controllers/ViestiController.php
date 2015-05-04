@@ -104,15 +104,14 @@ class ViestiController extends BaseController {
     public static function kayttajan_saapuneet_viestit() {
         self::check_kayttaja_logged_in();
         $viestit = Viesti::kayttajan_saapuneet_viestit();
-        $kayttajat = Asiakas::all();
-        View::make('suunnitelmat/saapuneet_viestit.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
+
+        View::make('asiakasnakymat/saapuneet_viestit.html', array('viestit' => $viestit));
     }
 
     public static function kayttajan_lahettamat_viestit() {
         self::check_kayttaja_logged_in();
         $viestit = Viesti::kayttajan_lahettamat_viestit();
-        $kayttajat = Asiakas::all();
-        View::make('suunnitelmat/lahetetyt_viestit.html', array('viestit' => $viestit, 'kayttajat' => $kayttajat));
+        View::make('asiakasnakymat/lahetetyt_viestit.html', array('viestit' => $viestit));
     }
 
     public static function yllapitajan_viestilistaus() {
