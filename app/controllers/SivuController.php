@@ -84,8 +84,6 @@ class SivuController extends BaseController {
         }
     }
 
-
-
     public static function kayttajan_sivut() {
         self::check_kayttaja_logged_in();
         $sivut = Esittelysivu::kayttajan_sivut();
@@ -102,14 +100,14 @@ class SivuController extends BaseController {
 
     public static function naytaEsittelysivu($sid) {
         self::check_kayttaja_logged_in();
-        $kayttaja=$_SESSION['kayttajaid'];
+        $kayttaja = $_SESSION['kayttajaid'];
         $sivu = Esittelysivu::haeSivuJaNimimerkki($sid);
-        if(!$sivu['salainen']) {
+        if (!$sivu['salainen']) {
             View::make('/asiakasnakymat/nayta_esittelysivu.html', array('sivu' => $sivu));
         } else if (Lukuoikeus::tarkistaLukuoikeus($sid, $kayttaja)) {
             View::make('/asiakasnakymat/nayta_esittelysivu.html', array('sivu' => $sivu));
-        } else
-            Redirect::to('/etusivu', array('message' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.'));
+        } else {
+//            Redirect::to('/etusivu', array('message' => 'Sinulla ei ole oikeutta nähdä tätä viestiä.'));
+        }
     }
-
-}
+}  

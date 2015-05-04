@@ -45,10 +45,13 @@ class Lukuoikeus extends BaseModel {
     }
     
         public static function tarkistaLukuoikeus($sivu, $kayttaja) {
-        $query = DB::connection()->prepare('SELECT FROM Lukuoikeus WHERE sivuid=:sivuid AND asiakasid=:asiakasid');
+        $query = DB::connection()->prepare('SELECT * FROM Lukuoikeus WHERE sivuid=:sivuid AND asiakasid=:asiakasid');
         $query->execute(array('sivuid' => $sivu, 'asiakasid' => $kayttaja));
         $rows = $query->fetchAll();
-        if($rows==NULL)
+//        Kint::dump($kayttaja);
+//        Kint::dump($sivu);
+//        Kint::dump($rows);
+        if(empty($rows))
             return false;
         return true;
     }
