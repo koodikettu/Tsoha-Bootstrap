@@ -287,7 +287,7 @@ class Esittelysivu extends BaseModel {
 
     public function validoi_otsikko() {
         $errors = array();
-        if (!$this->val_strlen($this->otsikko, 3))
+        if (!$this->val_strlen(trim($this->otsikko), 3))
             $errors[] = 'Otsikon on oltava vähintään 3 merkkiä pitkä';
         if (!$this->notNull($this->otsikko))
             $errors[] = 'Otsikko ei saa olla tyhjä';
@@ -296,7 +296,7 @@ class Esittelysivu extends BaseModel {
 
     public function validoi_sisalto() {
         $errors = array();
-        if (!$this->val_strlen($this->sisalto, 3))
+        if (!$this->val_strlen(trim($this->sisalto), 3))
             $errors[] = 'Sisällön on oltava vähintään 3 merkkiä pitkä';
         if (!$this->notNull($this->sisalto))
             $errors[] = 'Sisältö ei saa olla tyhjä';

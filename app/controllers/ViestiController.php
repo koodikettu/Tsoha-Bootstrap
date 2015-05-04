@@ -116,11 +116,9 @@ class ViestiController extends BaseController {
 
     public static function yllapitajan_viestilistaus() {
         self::check_yllapitaja_logged_in();
-//        $viestit = Viesti::all();
-//        $kayttajat = Asiakas::all();
+
         $viestit = Viesti::yllapitajanViestilistaus();
 //        Kint::dump($viestit);
-//        echo 'Onkssetää';
         View::make('yllapitonakymat/yllapitajan_viestilistaus.html', array('viestit' => $viestit));
     }
 

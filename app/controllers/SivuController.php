@@ -59,8 +59,15 @@ class SivuController extends BaseController {
             Lukuoikeus::poistaLukuoikeudet($sivu->sivuid);
         if ($params['action'] == 'paivita') {
             if ($_SESSION['kayttajaid'] == $sivu->asiakasid) {
-                $sivu->update();
-                Redirect::to('/kayttajan_sivut', array('message' => 'Muutokset esittelysivuun on tallennettu.'));
+                $errors = $sivu->errors();
+        if (count($errors) == 0) {
+
+            $sivu->update();
+
+            Redirect::to('/kayttajan_sivut', array('message' => 'Muutokset on tallennettu.'));
+        } else {
+            View::make('/asiakasnakymat/uusi_esittelysivu.html', array('errors' => $errors, 'sivu' => $sivu));
+        }
             } else {
                 Redirect::to('/etusivu', array('message' => 'Sinulla ei ole oikeutta nähdä tätä sivua.'));
             }

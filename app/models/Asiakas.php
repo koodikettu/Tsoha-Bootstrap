@@ -282,7 +282,7 @@ class Asiakas extends BaseModel {
 
     public function validoi_etunimi() {
         $errors = array();
-        if (!$this->val_strlen($this->etunimi, 2))
+        if (!$this->val_strlen(trim($this->etunimi), 2))
             $errors[] = 'Etunimessä on oltava vähintään 2 merkkiä';
         if (!$this->notNull($this->etunimi))
             $errors[] = 'Etunimi ei saa olla tyhjä';
@@ -291,7 +291,7 @@ class Asiakas extends BaseModel {
 
     public function validoi_sukunimi() {
         $errors = array();
-        if (!$this->val_strlen($this->sukunimi, 2))
+        if (!$this->val_strlen(trim($this->sukunimi), 2))
             $errors[] = 'Sukunimessä on oltava vähintään 2 merkkiä';
         if (!$this->notNull($this->sukunimi))
             $errors[] = 'Sukunimi ei saa olla tyhjä';
@@ -300,25 +300,29 @@ class Asiakas extends BaseModel {
 
     public function validoi_kayttajatunnus() {
         $errors = array();
-        if (!$this->val_strlen($this->kayttajatunnus, 3))
+        if (!$this->val_strlen(trim($this->kayttajatunnus), 3))
             $errors[] = 'Käyttäjätunnuksessa on oltava vähintään 3 merkkiä';
         if (!$this->notNull($this->kayttajatunnus))
             $errors[] = 'Käyttäjätunnus ei saa olla tyhjä';
+        if (strlen($this->kayttajatunnus) > strlen(trim($this->kayttajatunnus)))
+            $errors[] = 'Käyttäjätunnus ei saa sisältää välilyöntejä';
         return $errors;
     }
 
     public function validoi_nimimerkki() {
         $errors = array();
-        if (!$this->val_strlen($this->nimimerkki, 3))
+        if (!$this->val_strlen(trim($this->nimimerkki), 3))
             $errors[] = 'Nimimerkissä on oltava vähintään 3 merkkiä';
         if (!$this->notNull($this->nimimerkki))
             $errors[] = 'Nimimerkki ei saa olla tyhjä';
+        if (strlen($this->nimimerkki) > strlen(trim($this->nimimerkki)))
+            $errors[] = 'Käyttäjätunnus ei saa sisältää välilyöntejä';
         return $errors;
     }
 
     public function validoi_salasana() {
         $errors = array();
-        if (!$this->val_strlen($this->salasana, 6))
+        if (!$this->val_strlen(trim($this->salasana), 6))
             $errors[] = 'Salasanassa on oltava vähintään 6 merkkiä';
         if (!$this->notNull($this->salasana))
             $errors[] = 'Salasana ei saa olla tyhjä';
@@ -354,7 +358,7 @@ class Asiakas extends BaseModel {
 
     public function validoi_katuosoite() {
         $errors = array();
-        if (!$this->val_strlen($this->katuosoite, 3))
+        if (!$this->val_strlen(trim($this->katuosoite), 3))
             $errors[] = 'Katunimessä on oltava vähintään 3 merkkiä';
         if (!$this->notNull($this->katuosoite))
             $errors[] = 'Katunimi ei saa olla tyhjä';
@@ -369,10 +373,11 @@ class Asiakas extends BaseModel {
             $errors[] = 'Postinumeron on oltava numero';
         return $errors;
     }
+    
 
     public function validoi_paikkakunta() {
         $errors = array();
-        if (!$this->val_strlen($this->paikkakunta, 2))
+        if (!$this->val_strlen(trim($this->paikkakunta), 2))
             $errors[] = 'Paikkakunnassa on oltava vähintään 2 merkkiä';
         if (!$this->notNull($this->paikkakunta))
             $errors[] = 'Paikkakunta ei saa olla tyhjä';

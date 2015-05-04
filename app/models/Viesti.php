@@ -156,12 +156,14 @@ class Viesti extends BaseModel {
 
     public function validoi_sisalto() {
         $errors = array();
-        if (!$this->val_strlen($this->sisalto, 3))
+        if (!$this->val_strlen(trim($this->sisalto), 3))
             $errors[] = 'Viestissä on oltava vähintään 3 merkkiä';
-        if (!$this->notNull($this->sisalto))
+        if (!$this->notNull(trim($this->sisalto)))
             $errors[] = 'Viesti ei saa olla tyhjä';
         return $errors;
     }
+    
+
     
         public static function yllapitajanViestilistaus() {
         $haku1 = 'SELECT lah.kayttajatunnus as lahettaja, vas.kayttajatunnus as vastaanottaja, viesti.sisalto as sisalto, viesti.aikaleima as aikaleima, viesti.luettu as luettu ';
